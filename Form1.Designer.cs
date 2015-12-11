@@ -163,13 +163,14 @@
             this.редактироватьToolStripMenuItem,
             this.удалитьToolStripMenuItem});
             this.playerEditMenu.Name = "playerEditMenu";
-            this.playerEditMenu.Size = new System.Drawing.Size(155, 48);
+            this.playerEditMenu.Size = new System.Drawing.Size(155, 70);
             // 
             // редактироватьToolStripMenuItem
             // 
             this.редактироватьToolStripMenuItem.Name = "редактироватьToolStripMenuItem";
             this.редактироватьToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.редактироватьToolStripMenuItem.Text = "Редактировать";
+            this.редактироватьToolStripMenuItem.Click += new System.EventHandler(this.редактироватьToolStripMenuItem_Click);
             // 
             // удалитьToolStripMenuItem
             // 

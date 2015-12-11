@@ -23,5 +23,10 @@ namespace Flame_Manager {
         private void viewButton_Click(object sender, EventArgs e) {
             Process.Start("http://clan-flame.ru/sostav.php");
         }
+
+        private void редактироватьToolStripMenuItem_Click(object sender, EventArgs e) {
+            Form editForm = new PlayerEditForm();
+            editForm.ShowDialog();
+        }
     }
 }
