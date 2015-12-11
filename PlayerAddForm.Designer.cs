@@ -38,6 +38,8 @@
             this.skype = new System.Windows.Forms.TextBox();
             this.insertButton = new System.Windows.Forms.Button();
             this.skipButton = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // nickName
@@ -122,7 +124,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 177);
+            this.label5.Location = new System.Drawing.Point(12, 228);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(32, 13);
             this.label5.TabIndex = 10;
@@ -130,7 +132,7 @@
             // 
             // name
             // 
-            this.name.Location = new System.Drawing.Point(93, 174);
+            this.name.Location = new System.Drawing.Point(93, 225);
             this.name.Name = "name";
             this.name.Size = new System.Drawing.Size(156, 20);
             this.name.TabIndex = 9;
@@ -138,7 +140,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 216);
+            this.label6.Location = new System.Drawing.Point(12, 267);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(40, 13);
             this.label6.TabIndex = 12;
@@ -146,14 +148,14 @@
             // 
             // skype
             // 
-            this.skype.Location = new System.Drawing.Point(93, 213);
+            this.skype.Location = new System.Drawing.Point(93, 264);
             this.skype.Name = "skype";
             this.skype.Size = new System.Drawing.Size(156, 20);
             this.skype.TabIndex = 11;
             // 
             // insertButton
             // 
-            this.insertButton.Location = new System.Drawing.Point(15, 260);
+            this.insertButton.Location = new System.Drawing.Point(15, 311);
             this.insertButton.Name = "insertButton";
             this.insertButton.Size = new System.Drawing.Size(101, 38);
             this.insertButton.TabIndex = 13;
@@ -162,7 +164,7 @@
             // 
             // skipButton
             // 
-            this.skipButton.Location = new System.Drawing.Point(148, 260);
+            this.skipButton.Location = new System.Drawing.Point(148, 311);
             this.skipButton.Name = "skipButton";
             this.skipButton.Size = new System.Drawing.Size(101, 38);
             this.skipButton.TabIndex = 14;
@@ -170,11 +172,43 @@
             this.skipButton.UseVisualStyleBackColor = true;
             this.skipButton.Click += new System.EventHandler(this.skipButton_Click);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Зам. Командира",
+            "Командир",
+            "Стрелок",
+            "Штурмовик",
+            "Медик"});
+            this.comboBox1.Location = new System.Drawing.Point(93, 161);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(156, 21);
+            this.comboBox1.TabIndex = 15;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Зам. Командира",
+            "Командир",
+            "Стрелок",
+            "Штурмовик",
+            "Медик"});
+            this.comboBox2.Location = new System.Drawing.Point(93, 188);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(156, 21);
+            this.comboBox2.TabIndex = 16;
+            // 
             // PlayerAddForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(274, 316);
+            this.ClientSize = new System.Drawing.Size(274, 362);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.skipButton);
             this.Controls.Add(this.insertButton);
             this.Controls.Add(this.label6);
@@ -214,5 +248,7 @@
         private System.Windows.Forms.TextBox skype;
         private System.Windows.Forms.Button insertButton;
         private System.Windows.Forms.Button skipButton;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
     }
 }
