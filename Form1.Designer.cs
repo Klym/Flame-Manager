@@ -64,7 +64,7 @@
             this.Options.Controls.Add(this.addButton);
             this.Options.Location = new System.Drawing.Point(12, 407);
             this.Options.Name = "Options";
-            this.Options.Size = new System.Drawing.Size(470, 111);
+            this.Options.Size = new System.Drawing.Size(476, 111);
             this.Options.TabIndex = 1;
             this.Options.TabStop = false;
             this.Options.Text = "Опции";
@@ -72,19 +72,20 @@
             // viewButton
             // 
             this.viewButton.AutoSize = true;
-            this.viewButton.Location = new System.Drawing.Point(345, 37);
+            this.viewButton.Location = new System.Drawing.Point(330, 37);
             this.viewButton.Name = "viewButton";
-            this.viewButton.Size = new System.Drawing.Size(119, 55);
+            this.viewButton.Size = new System.Drawing.Size(140, 55);
             this.viewButton.TabIndex = 2;
             this.viewButton.Text = "Просмотреть";
             this.viewButton.UseVisualStyleBackColor = true;
+            this.viewButton.Click += new System.EventHandler(this.viewButton_Click);
             // 
             // saveButton
             // 
             this.saveButton.AutoSize = true;
-            this.saveButton.Location = new System.Drawing.Point(173, 36);
+            this.saveButton.Location = new System.Drawing.Point(168, 36);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(119, 55);
+            this.saveButton.Size = new System.Drawing.Size(140, 55);
             this.saveButton.TabIndex = 1;
             this.saveButton.Text = "Сохранить в файл";
             this.saveButton.UseVisualStyleBackColor = true;
@@ -94,7 +95,7 @@
             this.addButton.AutoSize = true;
             this.addButton.Location = new System.Drawing.Point(6, 37);
             this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(119, 55);
+            this.addButton.Size = new System.Drawing.Size(140, 55);
             this.addButton.TabIndex = 0;
             this.addButton.Text = "Добавить игрока";
             this.addButton.UseVisualStyleBackColor = true;
