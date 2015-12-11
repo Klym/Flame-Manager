@@ -34,7 +34,12 @@
             "500000",
             "Военачальник",
             "Олег Перятинский"}, -1);
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.Options = new System.Windows.Forms.GroupBox();
+            this.viewButton = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
+            this.addButton = new System.Windows.Forms.Button();
+            this.playersBox = new System.Windows.Forms.GroupBox();
             this.PlayerView = new System.Windows.Forms.ListView();
             this.NickHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ScoresHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -43,31 +48,68 @@
             this.playerEditMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.редактироватьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.удалитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Options = new System.Windows.Forms.GroupBox();
-            this.addButton = new System.Windows.Forms.Button();
-            this.saveButton = new System.Windows.Forms.Button();
-            this.viewButton = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.playerEditMenu.SuspendLayout();
             this.Options.SuspendLayout();
+            this.playersBox.SuspendLayout();
+            this.playerEditMenu.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // Options
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.Options.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.PlayerView, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.Options, 0, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 12);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(470, 443);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.Options.AutoSize = true;
+            this.Options.Controls.Add(this.viewButton);
+            this.Options.Controls.Add(this.saveButton);
+            this.Options.Controls.Add(this.addButton);
+            this.Options.Location = new System.Drawing.Point(12, 407);
+            this.Options.Name = "Options";
+            this.Options.Size = new System.Drawing.Size(470, 111);
+            this.Options.TabIndex = 1;
+            this.Options.TabStop = false;
+            this.Options.Text = "Опции";
+            // 
+            // viewButton
+            // 
+            this.viewButton.AutoSize = true;
+            this.viewButton.Location = new System.Drawing.Point(339, 37);
+            this.viewButton.Name = "viewButton";
+            this.viewButton.Size = new System.Drawing.Size(119, 55);
+            this.viewButton.TabIndex = 2;
+            this.viewButton.Text = "Просмотреть";
+            this.viewButton.UseVisualStyleBackColor = true;
+            // 
+            // saveButton
+            // 
+            this.saveButton.AutoSize = true;
+            this.saveButton.Location = new System.Drawing.Point(173, 36);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(119, 55);
+            this.saveButton.TabIndex = 1;
+            this.saveButton.Text = "Сохранить в файл";
+            this.saveButton.UseVisualStyleBackColor = true;
+            // 
+            // addButton
+            // 
+            this.addButton.AutoSize = true;
+            this.addButton.Location = new System.Drawing.Point(6, 37);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(119, 55);
+            this.addButton.TabIndex = 0;
+            this.addButton.Text = "Добавить игрока";
+            this.addButton.UseVisualStyleBackColor = true;
+            // 
+            // playersBox
+            // 
+            this.playersBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.playersBox.Controls.Add(this.PlayerView);
+            this.playersBox.Location = new System.Drawing.Point(12, 12);
+            this.playersBox.Name = "playersBox";
+            this.playersBox.Size = new System.Drawing.Size(470, 389);
+            this.playersBox.TabIndex = 2;
+            this.playersBox.TabStop = false;
+            this.playersBox.Text = "Состав";
             // 
             // PlayerView
             // 
@@ -85,11 +127,11 @@
             this.PlayerView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1,
             listViewItem2});
-            this.PlayerView.Location = new System.Drawing.Point(3, 3);
+            this.PlayerView.Location = new System.Drawing.Point(0, 19);
             this.PlayerView.MultiSelect = false;
             this.PlayerView.Name = "PlayerView";
-            this.PlayerView.Size = new System.Drawing.Size(464, 304);
-            this.PlayerView.TabIndex = 0;
+            this.PlayerView.Size = new System.Drawing.Size(470, 370);
+            this.PlayerView.TabIndex = 1;
             this.PlayerView.UseCompatibleStateImageBehavior = false;
             this.PlayerView.View = System.Windows.Forms.View.Details;
             // 
@@ -106,12 +148,12 @@
             // RankHeader
             // 
             this.RankHeader.Text = "Звание";
-            this.RankHeader.Width = 112;
+            this.RankHeader.Width = 108;
             // 
             // NameHeader
             // 
             this.NameHeader.Text = "Имя";
-            this.NameHeader.Width = 158;
+            this.NameHeader.Width = 162;
             // 
             // playerEditMenu
             // 
@@ -133,77 +175,27 @@
             this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.удалитьToolStripMenuItem.Text = "Удалить";
             // 
-            // Options
-            // 
-            this.Options.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Options.AutoSize = true;
-            this.Options.Controls.Add(this.viewButton);
-            this.Options.Controls.Add(this.saveButton);
-            this.Options.Controls.Add(this.addButton);
-            this.Options.Location = new System.Drawing.Point(3, 313);
-            this.Options.Name = "Options";
-            this.Options.Size = new System.Drawing.Size(464, 127);
-            this.Options.TabIndex = 1;
-            this.Options.TabStop = false;
-            this.Options.Text = "Опции";
-            // 
-            // addButton
-            // 
-            this.addButton.AutoSize = true;
-            this.addButton.Location = new System.Drawing.Point(6, 37);
-            this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(119, 55);
-            this.addButton.TabIndex = 0;
-            this.addButton.Text = "Добавить игрока";
-            this.addButton.UseVisualStyleBackColor = true;
-            // 
-            // saveButton
-            // 
-            this.saveButton.AutoSize = true;
-            this.saveButton.Location = new System.Drawing.Point(173, 36);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(119, 55);
-            this.saveButton.TabIndex = 1;
-            this.saveButton.Text = "Сохранить в файл";
-            this.saveButton.UseVisualStyleBackColor = true;
-            // 
-            // viewButton
-            // 
-            this.viewButton.AutoSize = true;
-            this.viewButton.Location = new System.Drawing.Point(339, 37);
-            this.viewButton.Name = "viewButton";
-            this.viewButton.Size = new System.Drawing.Size(119, 55);
-            this.viewButton.TabIndex = 2;
-            this.viewButton.Text = "Просмотреть";
-            this.viewButton.UseVisualStyleBackColor = true;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(494, 467);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.ClientSize = new System.Drawing.Size(494, 531);
+            this.Controls.Add(this.Options);
+            this.Controls.Add(this.playersBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "Flame Manager";
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.playerEditMenu.ResumeLayout(false);
             this.Options.ResumeLayout(false);
             this.Options.PerformLayout();
+            this.playersBox.ResumeLayout(false);
+            this.playerEditMenu.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.ListView PlayerView;
-        private System.Windows.Forms.ColumnHeader NickHeader;
-        private System.Windows.Forms.ColumnHeader ScoresHeader;
-        private System.Windows.Forms.ColumnHeader RankHeader;
-        private System.Windows.Forms.ColumnHeader NameHeader;
         private System.Windows.Forms.ContextMenuStrip playerEditMenu;
         private System.Windows.Forms.ToolStripMenuItem редактироватьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem удалитьToolStripMenuItem;
@@ -211,6 +203,12 @@
         private System.Windows.Forms.Button viewButton;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button addButton;
+        private System.Windows.Forms.GroupBox playersBox;
+        private System.Windows.Forms.ListView PlayerView;
+        private System.Windows.Forms.ColumnHeader NickHeader;
+        private System.Windows.Forms.ColumnHeader ScoresHeader;
+        private System.Windows.Forms.ColumnHeader RankHeader;
+        private System.Windows.Forms.ColumnHeader NameHeader;
     }
 }
 
