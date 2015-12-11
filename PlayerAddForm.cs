@@ -9,14 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Flame_Manager {
-    public partial class MainForm : Form {
-        public MainForm() {
+    public partial class PlayerAddForm : Form {
+        public PlayerAddForm() {
             InitializeComponent();
         }
 
-        private void addButton_Click(object sender, EventArgs e) {
-            Form addForm = new PlayerAddForm();
-            addForm.ShowDialog();
+        private void skipButton_Click(object sender, EventArgs e) {
+            this.Close();
         }
     }
 }

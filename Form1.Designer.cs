@@ -72,7 +72,7 @@
             // viewButton
             // 
             this.viewButton.AutoSize = true;
-            this.viewButton.Location = new System.Drawing.Point(339, 37);
+            this.viewButton.Location = new System.Drawing.Point(345, 37);
             this.viewButton.Name = "viewButton";
             this.viewButton.Size = new System.Drawing.Size(119, 55);
             this.viewButton.TabIndex = 2;
@@ -98,6 +98,7 @@
             this.addButton.TabIndex = 0;
             this.addButton.Text = "Добавить игрока";
             this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
             // playersBox
             // 
@@ -153,7 +154,7 @@
             // NameHeader
             // 
             this.NameHeader.Text = "Имя";
-            this.NameHeader.Width = 162;
+            this.NameHeader.Width = 167;
             // 
             // playerEditMenu
             // 
