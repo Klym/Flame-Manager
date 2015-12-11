@@ -163,7 +163,7 @@
             this.редактироватьToolStripMenuItem,
             this.удалитьToolStripMenuItem});
             this.playerEditMenu.Name = "playerEditMenu";
-            this.playerEditMenu.Size = new System.Drawing.Size(155, 70);
+            this.playerEditMenu.Size = new System.Drawing.Size(155, 48);
             // 
             // редактироватьToolStripMenuItem
             // 
