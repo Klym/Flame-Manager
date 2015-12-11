@@ -26,7 +26,7 @@ namespace Flame_Manager {
 
         private void редактироватьToolStripMenuItem_Click(object sender, EventArgs e) {
             Form editForm = new PlayerEditForm();
-            editForm.ShowDialog();
+            editForm.Show();
         }
     }
 }

@@ -18,10 +18,6 @@ namespace Flame_Manager {
 
         }
 
-        private void skipButton_Click(object sender, EventArgs e) {
-            this.Close();
-        }
-
         private void addScoresButton_Click(object sender, EventArgs e) {
             scores.Text = (double.Parse(scores.Text) + double.Parse(scoresToAdd.Text)).ToString();
         }

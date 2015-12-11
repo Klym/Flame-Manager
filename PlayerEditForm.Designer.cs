@@ -23,7 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.skipButton = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlayerEditForm));
             this.updateButton = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.skype = new System.Windows.Forms.TextBox();
@@ -45,21 +45,21 @@
             this.addScoresButton = new System.Windows.Forms.Button();
             this.subScoresButton = new System.Windows.Forms.Button();
             this.scoresToAdd = new System.Windows.Forms.TextBox();
+            this.stripe = new System.Windows.Forms.PictureBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.viewPlayerButton = new System.Windows.Forms.Button();
+            this.resetButton = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            ((System.ComponentModel.ISupportInitialize)(this.stripe)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // skipButton
-            // 
-            this.skipButton.Location = new System.Drawing.Point(150, 299);
-            this.skipButton.Name = "skipButton";
-            this.skipButton.Size = new System.Drawing.Size(101, 38);
-            this.skipButton.TabIndex = 28;
-            this.skipButton.Text = "Отмена";
-            this.skipButton.UseVisualStyleBackColor = true;
-            this.skipButton.Click += new System.EventHandler(this.skipButton_Click);
             // 
             // updateButton
             // 
-            this.updateButton.Location = new System.Drawing.Point(17, 299);
+            this.updateButton.Location = new System.Drawing.Point(19, 19);
             this.updateButton.Name = "updateButton";
             this.updateButton.Size = new System.Drawing.Size(101, 38);
             this.updateButton.TabIndex = 27;
@@ -70,7 +70,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(14, 209);
+            this.label6.Location = new System.Drawing.Point(13, 262);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(40, 13);
             this.label6.TabIndex = 26;
@@ -78,7 +78,7 @@
             // 
             // skype
             // 
-            this.skype.Location = new System.Drawing.Point(95, 206);
+            this.skype.Location = new System.Drawing.Point(94, 259);
             this.skype.Name = "skype";
             this.skype.Size = new System.Drawing.Size(156, 20);
             this.skype.TabIndex = 25;
@@ -86,7 +86,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(14, 170);
+            this.label5.Location = new System.Drawing.Point(13, 223);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(32, 13);
             this.label5.TabIndex = 24;
@@ -94,7 +94,7 @@
             // 
             // name
             // 
-            this.name.Location = new System.Drawing.Point(95, 167);
+            this.name.Location = new System.Drawing.Point(94, 220);
             this.name.Name = "name";
             this.name.Size = new System.Drawing.Size(156, 20);
             this.name.TabIndex = 23;
@@ -141,7 +141,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 130);
+            this.label2.Location = new System.Drawing.Point(14, 134);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(68, 13);
             this.label2.TabIndex = 18;
@@ -157,9 +157,9 @@
             "Стрелок",
             "Штурмовик",
             "Медик"});
-            this.post1.Location = new System.Drawing.Point(95, 127);
+            this.post1.Location = new System.Drawing.Point(95, 131);
             this.post1.Name = "post1";
-            this.post1.Size = new System.Drawing.Size(156, 21);
+            this.post1.Size = new System.Drawing.Size(155, 21);
             this.post1.TabIndex = 17;
             // 
             // label1
@@ -255,11 +255,94 @@
             this.scoresToAdd.Text = "0";
             this.scoresToAdd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kills_KeyPress);
             // 
+            // stripe
+            // 
+            this.stripe.Image = ((System.Drawing.Image)(resources.GetObject("stripe.Image")));
+            this.stripe.Location = new System.Drawing.Point(24, 19);
+            this.stripe.Name = "stripe";
+            this.stripe.Size = new System.Drawing.Size(74, 131);
+            this.stripe.TabIndex = 38;
+            this.stripe.TabStop = false;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.stripe);
+            this.groupBox1.Location = new System.Drawing.Point(314, 127);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(121, 159);
+            this.groupBox1.TabIndex = 39;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Нашивка";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Зам. Командира",
+            "Командир",
+            "Стрелок",
+            "Штурмовик",
+            "Медик"});
+            this.comboBox1.Location = new System.Drawing.Point(95, 158);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(155, 21);
+            this.comboBox1.TabIndex = 40;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Зам. Командира",
+            "Командир",
+            "Стрелок",
+            "Штурмовик",
+            "Медик"});
+            this.comboBox2.Location = new System.Drawing.Point(95, 185);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(155, 21);
+            this.comboBox2.TabIndex = 41;
+            // 
+            // viewPlayerButton
+            // 
+            this.viewPlayerButton.Location = new System.Drawing.Point(172, 19);
+            this.viewPlayerButton.Name = "viewPlayerButton";
+            this.viewPlayerButton.Size = new System.Drawing.Size(101, 38);
+            this.viewPlayerButton.TabIndex = 42;
+            this.viewPlayerButton.Text = "Просмотр";
+            this.viewPlayerButton.UseVisualStyleBackColor = true;
+            // 
+            // resetButton
+            // 
+            this.resetButton.Location = new System.Drawing.Point(326, 19);
+            this.resetButton.Name = "resetButton";
+            this.resetButton.Size = new System.Drawing.Size(101, 38);
+            this.resetButton.TabIndex = 28;
+            this.resetButton.Text = "Сброс";
+            this.resetButton.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.resetButton);
+            this.groupBox2.Controls.Add(this.viewPlayerButton);
+            this.groupBox2.Controls.Add(this.updateButton);
+            this.groupBox2.Location = new System.Drawing.Point(12, 297);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(449, 70);
+            this.groupBox2.TabIndex = 43;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Опции";
+            // 
             // PlayerEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(473, 351);
+            this.ClientSize = new System.Drawing.Size(473, 379);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.scoresToAdd);
             this.Controls.Add(this.subScoresButton);
             this.Controls.Add(this.addScoresButton);
@@ -268,8 +351,6 @@
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.skipButton);
-            this.Controls.Add(this.updateButton);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.skype);
             this.Controls.Add(this.label5);
@@ -283,16 +364,18 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.nickName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PlayerEditForm";
-            this.Text = "PlayerEditForm";
+            this.Text = "Редактирование игрока: ";
+            ((System.ComponentModel.ISupportInitialize)(this.stripe)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button skipButton;
         private System.Windows.Forms.Button updateButton;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox skype;
@@ -314,5 +397,12 @@
         private System.Windows.Forms.Button addScoresButton;
         private System.Windows.Forms.Button subScoresButton;
         private System.Windows.Forms.TextBox scoresToAdd;
+        private System.Windows.Forms.PictureBox stripe;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Button viewPlayerButton;
+        private System.Windows.Forms.Button resetButton;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
