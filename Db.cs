@@ -12,6 +12,12 @@ namespace Flame_Manager {
         private MySqlConnection connection;
         private Process plink;
 
+        public MySqlConnection Connection {
+            get {
+                return connection;
+            }
+        }
+
         public Db() {
             // Чтение хостов и паролей из файла
             FileStream fs = new FileStream(@"pass.txt", FileMode.Open);

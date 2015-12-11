@@ -24,16 +24,6 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "Клым",
-            "480000",
-            "Командующий",
-            "Максим Клименко"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
-            "Хитрец",
-            "500000",
-            "Военачальник",
-            "Олег Перятинский"}, -1);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.Options = new System.Windows.Forms.GroupBox();
             this.viewButton = new System.Windows.Forms.Button();
@@ -126,9 +116,6 @@
             this.PlayerView.ContextMenuStrip = this.playerEditMenu;
             this.PlayerView.FullRowSelect = true;
             this.PlayerView.GridLines = true;
-            this.PlayerView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2});
             this.PlayerView.Location = new System.Drawing.Point(0, 19);
             this.PlayerView.MultiSelect = false;
             this.PlayerView.Name = "PlayerView";
