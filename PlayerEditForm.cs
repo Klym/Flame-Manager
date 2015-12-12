@@ -16,6 +16,7 @@ namespace Flame_Manager {
         public PlayerEditForm(Player player) {
             InitializeComponent();
             this.player = player;
+            this.Text += this.player.Login;
             this.fillTextBoxes();
         }
 
