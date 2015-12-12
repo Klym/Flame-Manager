@@ -11,6 +11,12 @@ namespace Flame_Manager {
         private double minScores;
         private double maxScores;
 
+        public int Id {
+            get {
+                return id;
+            }
+        }
+
         public string Name {
             get {
                 return name;

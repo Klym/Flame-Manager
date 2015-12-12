@@ -21,8 +21,20 @@ namespace Flame_Manager {
         private void fillTextBoxes() {
             nickName.Text = this.player.Login;
             scores.Text = this.player.Scores.ToString();
+            // Заполняем comboBox званиями и выбираем текущий
+            for (int i = 0; i < MainForm.ranks.Count - 1; i++) {
+                rank.Items.Add(MainForm.ranks[i].Name);
+                if (MainForm.ranks[i].Name == this.player.Rank.Name) {
+                    rank.SelectedItem = this.player.Rank.Name;
+                }
+            }
             name.Text = this.player.Name;
             skype.Text = this.player.Skype;
+            // Подгружаем изображение нашивки с сайта
+            if (this.player.Rank.Id < 45) {
+                stripe.Location = new Point(36, 19);
+            }
+            stripe.Load("http://clan-flame.ru/img/rangs/" + this.player.Rank.Id + ".png");
         }
 
         private void updateButton_Click(object sender, EventArgs e) {
@@ -47,6 +59,10 @@ namespace Flame_Manager {
         private void kills_KeyPress(object sender, KeyPressEventArgs e) {
             if ((e.KeyChar < 48 || e.KeyChar >= 58) && e.KeyChar != 8 && e.KeyChar != 44)
                 e.Handled = true;
+        }
+
+        private void resetButton_Click(object sender, EventArgs e) {
+            this.fillTextBoxes();
         }
     }
 }

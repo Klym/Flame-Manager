@@ -103,10 +103,6 @@
             // 
             this.rank.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.rank.FormattingEnabled = true;
-            this.rank.Items.AddRange(new object[] {
-            "Новобранец",
-            "Новичек",
-            "Опытный"});
             this.rank.Location = new System.Drawing.Point(95, 52);
             this.rank.Name = "rank";
             this.rank.Size = new System.Drawing.Size(156, 21);
@@ -128,6 +124,7 @@
             this.scores.Size = new System.Drawing.Size(80, 20);
             this.scores.TabIndex = 20;
             this.scores.Text = "0";
+            this.scores.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kills_KeyPress);
             // 
             // label3
             // 
@@ -257,7 +254,6 @@
             // 
             // stripe
             // 
-            this.stripe.Image = ((System.Drawing.Image)(resources.GetObject("stripe.Image")));
             this.stripe.Location = new System.Drawing.Point(24, 19);
             this.stripe.Name = "stripe";
             this.stripe.Size = new System.Drawing.Size(74, 131);
@@ -321,6 +317,7 @@
             this.resetButton.TabIndex = 28;
             this.resetButton.Text = "Сброс";
             this.resetButton.UseVisualStyleBackColor = true;
+            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
             // 
             // groupBox2
             // 
