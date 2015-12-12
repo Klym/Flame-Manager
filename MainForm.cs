@@ -97,7 +97,7 @@ namespace Flame_Manager {
         private void редактироватьToolStripMenuItem_Click(object sender, EventArgs e) {
             if (PlayerView.SelectedItems.Count > 0) {
                 Form editForm = new PlayerEditForm(players[PlayerView.SelectedItems[0].Index]);
-                editForm.Show();
+                editForm.ShowDialog();
             } else {
                 MessageBox.Show("Вы не выбрали игрока.");
             }

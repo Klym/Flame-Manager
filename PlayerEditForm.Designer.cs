@@ -308,6 +308,7 @@
             this.viewPlayerButton.TabIndex = 42;
             this.viewPlayerButton.Text = "Просмотр";
             this.viewPlayerButton.UseVisualStyleBackColor = true;
+            this.viewPlayerButton.Click += new System.EventHandler(this.viewPlayerButton_Click);
             // 
             // resetButton
             // 
