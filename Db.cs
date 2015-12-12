@@ -9,19 +9,12 @@ using System.Diagnostics;
 
 namespace Flame_Manager {
     class Db {
-        private MySqlConnection connection;
         private Process plink;
         private string connectionStr;
         private string mysqlHost;
         private string ftpHost;
         private string database;
         private string pass;
-
-        public MySqlConnection Connection {
-            get {
-                return connection;
-            }
-        }
 
         public string ConnectionStr {
             get {
@@ -64,20 +57,18 @@ namespace Flame_Manager {
             this.plink.StartInfo.RedirectStandardOutput = true;
             this.plink.StartInfo.UseShellExecute = false;
             this.plink.Start();
+            // Ожидание открытия SSH (приложение при успешном открытии выведет 3 строки)
             int i = 0;
-            while(i++ < 2) {
+            while (i++ < 2) {
                 this.plink.StandardOutput.ReadLine();
             }
         }
 
         private void connect() {
             this.connectionStr = "SERVER=127.0.0.1; Port=3306; DATABASE=" + database + "; UID=" + database + "; PASSWORD=" + pass + ";";
-            this.connection = new MySqlConnection(this.connectionStr);
-            this.connection.Open();
         }
 
         ~Db() {
-            this.connection.Close();
             this.plink.Kill();
         }
     }

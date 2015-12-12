@@ -15,6 +15,7 @@ namespace Flame_Manager {
     public partial class MainForm : Form {
         private Db db;
         private List<Player> players;
+        public static List<Rank> ranks = new List<Rank>();
 
         public MainForm() {
             InitializeComponent();
@@ -29,13 +30,16 @@ namespace Flame_Manager {
                 this.Close();
                 return;
             }
+            this.selectRanks();
             this.selectPlayers();
             this.showPlayerList();
         }
 
         private void selectPlayers() {
+            MySqlConnection playersConnection = new MySqlConnection(db.ConnectionStr);
+            playersConnection.Open();
             string query = "SELECT * FROM sostav ORDER BY scores DESC";
-            MySqlCommand cmd = new MySqlCommand(query, db.Connection);
+            MySqlCommand cmd = new MySqlCommand(query, playersConnection);
             MySqlDataReader playersReader = cmd.ExecuteReader();
             this.players = new List<Player>();
             int id, post;
@@ -46,23 +50,28 @@ namespace Flame_Manager {
                 id = int.Parse(playersReader["id"].ToString());
                 login = playersReader["name"].ToString();
                 scores = double.Parse(playersReader["scores"].ToString());
-
-                // Создание объекта должности
-                query = "SELECT * FROM playerRangs WHERE rid = " + playersReader["rang"];
-                MySqlConnection rankCon = new MySqlConnection(db.ConnectionStr);
-                rankCon.Open();
-                MySqlCommand getRank = new MySqlCommand(query, rankCon);
-                MySqlDataReader rankReader = getRank.ExecuteReader();
-                rankReader.Read();
-                rank = new Rank(int.Parse(rankReader["rid"].ToString()), rankReader["rangName"].ToString(), double.Parse(rankReader["minScores"].ToString()), double.Parse(rankReader["maxScores"].ToString()));
-                rankCon.Close();
-
+                rank = ranks[int.Parse(playersReader["rang"].ToString()) - 1];
                 post = int.Parse(playersReader["dol"].ToString());
                 name = playersReader["fullName"].ToString();
                 skype = playersReader["skype"].ToString();
 
                 this.players.Add(new Player(id, login, rank, scores, post, name, skype));
             }
+            playersConnection.Close();
+        }
+
+        private void selectRanks() {
+            string query = "SELECT * FROM playerRangs";
+            MySqlConnection rankCon = new MySqlConnection(db.ConnectionStr);
+            rankCon.Open();
+            MySqlCommand getRank = new MySqlCommand(query, rankCon);
+            MySqlDataReader rankReader = getRank.ExecuteReader();
+            Rank rank;
+            while (rankReader.Read()) {
+                rank = new Rank(int.Parse(rankReader["rid"].ToString()), rankReader["rangName"].ToString(), double.Parse(rankReader["minScores"].ToString()), double.Parse(rankReader["maxScores"].ToString()));
+                ranks.Add(rank);
+            }
+            rankCon.Close();
         }
 
         private void showPlayerList() {
