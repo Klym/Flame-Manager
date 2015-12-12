@@ -107,6 +107,7 @@
             this.rank.Name = "rank";
             this.rank.Size = new System.Drawing.Size(156, 21);
             this.rank.TabIndex = 22;
+            this.rank.SelectionChangeCommitted += new System.EventHandler(this.rank_SelectionChangeCommitted);
             // 
             // label4
             // 
@@ -123,7 +124,7 @@
             this.scores.Name = "scores";
             this.scores.Size = new System.Drawing.Size(80, 20);
             this.scores.TabIndex = 20;
-            this.scores.Text = "0";
+            this.scores.TextChanged += new System.EventHandler(this.scores_TextChanged);
             this.scores.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.kills_KeyPress);
             // 
             // label3

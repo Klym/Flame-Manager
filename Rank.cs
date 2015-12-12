@@ -23,6 +23,18 @@ namespace Flame_Manager {
             }
         }
 
+        public double MinScores {
+            get {
+                return minScores;
+            }
+        }
+
+        public double MaxScores {
+            get {
+                return maxScores;
+            }
+        }
+
         public Rank(int id, string name, double minScores, double maxScores) {
             this.id = id;
             this.name = name;

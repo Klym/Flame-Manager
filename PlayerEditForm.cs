@@ -32,10 +32,7 @@ namespace Flame_Manager {
             name.Text = this.player.Name;
             skype.Text = this.player.Skype;
             // Подгружаем изображение нашивки с сайта
-            if (this.player.Rank.Id < 45) {
-                stripe.Location = new Point(36, 19);
-            }
-            stripe.Load("http://clan-flame.ru/img/rangs/" + this.player.Rank.Id + ".png");
+            this.setImageOfStripe(this.player.Rank.Id);
         }
 
         private void updateButton_Click(object sender, EventArgs e) {
@@ -68,6 +65,33 @@ namespace Flame_Manager {
 
         private void viewPlayerButton_Click(object sender, EventArgs e) {
             Process.Start("http://clan-flame.ru/sostav.php?id=" + player.Id);
+        }
+
+        private void rank_SelectionChangeCommitted(object sender, EventArgs e) {
+            for (int i = 0; i < MainForm.ranks.Count - 1; i++) {
+                if (MainForm.ranks[i].Name == this.rank.SelectedItem.ToString()) {
+                    scores.Text = MainForm.ranks[i].MinScores.ToString();
+                    this.setImageOfStripe(MainForm.ranks[i].Id);
+                }
+            }
+        }
+
+        private void scores_TextChanged(object sender, EventArgs e) {
+            for (int i = 0; i < MainForm.ranks.Count - 1; i++) {
+                if (double.Parse(scores.Text) >= MainForm.ranks[i].MinScores && double.Parse(scores.Text) <= MainForm.ranks[i].MaxScores) {
+                    rank.SelectedItem = MainForm.ranks[i].Name;
+                    this.setImageOfStripe(MainForm.ranks[i].Id);
+                }
+            }
+        }
+
+        private void setImageOfStripe(int stripeNum) {
+            if (stripeNum < 45) {
+                stripe.Location = new Point(36, 19);
+            } else {
+                stripe.Location = new Point(24, 19);
+            }
+            stripe.Load("http://clan-flame.ru/img/rangs/" + stripeNum + ".png");
         }
     }
 }
