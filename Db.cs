@@ -61,8 +61,13 @@ namespace Flame_Manager {
             this.plink.StartInfo.FileName = @"plink.exe";
             this.plink.StartInfo.Arguments = "-L localhost:3306:" + mysqlHost + ":3306 -pw " + pass + " " + ftpHost;
             this.plink.StartInfo.CreateNoWindow = true;
+            this.plink.StartInfo.RedirectStandardOutput = true;
             this.plink.StartInfo.UseShellExecute = false;
             this.plink.Start();
+            int i = 0;
+            while(i++ < 2) {
+                this.plink.StandardOutput.ReadLine();
+            }
         }
 
         private void connect() {
