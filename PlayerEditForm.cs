@@ -40,10 +40,12 @@ namespace Flame_Manager {
         }
 
         private void addScoresButton_Click(object sender, EventArgs e) {
+            if (String.Empty == scores.Text) return;
             scores.Text = (double.Parse(scores.Text) + double.Parse(scoresToAdd.Text)).ToString();
         }
 
         private void subScoresButton_Click(object sender, EventArgs e) {
+            if (String.Empty == scores.Text) return;
             scores.Text = (double.Parse(scores.Text) - double.Parse(scoresToAdd.Text)).ToString();
         }
 
@@ -77,6 +79,7 @@ namespace Flame_Manager {
         }
 
         private void scores_TextChanged(object sender, EventArgs e) {
+            if (String.Empty == scores.Text) return;
             for (int i = 0; i < MainForm.ranks.Count - 1; i++) {
                 if (double.Parse(scores.Text) >= MainForm.ranks[i].MinScores && double.Parse(scores.Text) <= MainForm.ranks[i].MaxScores) {
                     rank.SelectedItem = MainForm.ranks[i].Name;
@@ -91,7 +94,7 @@ namespace Flame_Manager {
             } else {
                 stripe.Location = new Point(24, 19);
             }
-            stripe.Load("http://clan-flame.ru/img/rangs/" + stripeNum + ".png");
+            stripe.Image = Image.FromFile(@"rangs/" + stripeNum + ".png");
         }
     }
 }
