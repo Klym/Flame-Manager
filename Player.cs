@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Flame_Manager {
-    class Player {
+    public class Player {
         private int id;
         private string login;
         private string rank;

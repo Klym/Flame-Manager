@@ -14,6 +14,7 @@ using MySql.Data.MySqlClient;
 namespace Flame_Manager {
     public partial class MainForm : Form {
         private Db db;
+        private List<Player> players;
 
         public MainForm() {
             InitializeComponent();
@@ -28,14 +29,15 @@ namespace Flame_Manager {
                 this.Close();
                 return;
             }
+            this.selectPlayers();
             this.showPlayerList();
         }
 
-        private List<Player> selectPlayers() {
+        private void selectPlayers() {
             string query = "SELECT * FROM sostav ORDER BY scores DESC";
             MySqlCommand cmd = new MySqlCommand(query, db.Connection);
             MySqlDataReader playersReader = cmd.ExecuteReader();
-            List<Player> players = new List<Player>();
+            this.players = new List<Player>();
             int id, post;
             double scores;
             string rank, login, name, skype;
@@ -48,19 +50,17 @@ namespace Flame_Manager {
                 name = playersReader["fullName"].ToString();
                 skype = playersReader["skype"].ToString();
 
-                players.Add(new Player(id, login, rank, scores, post, name, skype));
+                this.players.Add(new Player(id, login, rank, scores, post, name, skype));
             }
-            return players;
         }
 
         private void showPlayerList() {
-            List<Player> players = this.selectPlayers();
             ListViewItem player;
-            for (int i = 0; i < players.Count; i++) {
+            for (int i = 0; i < this.players.Count; i++) {
                 player = new ListViewItem(players[i].Login);
-                player.SubItems.Add(players[i].Scores.ToString());
-                player.SubItems.Add(players[i].Rank.ToString());
-                player.SubItems.Add(players[i].Name.ToString());
+                player.SubItems.Add(this.players[i].Scores.ToString());
+                player.SubItems.Add(this.players[i].Rank.ToString());
+                player.SubItems.Add(this.players[i].Name.ToString());
                 PlayerView.Items.Add(player);
             }
         }
@@ -75,8 +75,12 @@ namespace Flame_Manager {
         }
 
         private void редактироватьToolStripMenuItem_Click(object sender, EventArgs e) {
-            Form editForm = new PlayerEditForm();
-            editForm.Show();
+            if (PlayerView.SelectedItems.Count > 0) {
+                Form editForm = new PlayerEditForm(players[PlayerView.SelectedItems[0].Index]);
+                editForm.Show();
+            } else {
+                MessageBox.Show("Вы не выбрали игрока.");
+            }
         }
     }
 }

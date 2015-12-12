@@ -10,8 +10,19 @@ using System.Windows.Forms;
 
 namespace Flame_Manager {
     public partial class PlayerEditForm : Form {
-        public PlayerEditForm() {
+        private Player player;
+
+        public PlayerEditForm(Player player) {
             InitializeComponent();
+            this.player = player;
+            this.fillTextBoxes();
+        }
+
+        private void fillTextBoxes() {
+            nickName.Text = this.player.Login;
+            scores.Text = this.player.Scores.ToString();
+            name.Text = this.player.Name;
+            skype.Text = this.player.Skype;
         }
 
         private void updateButton_Click(object sender, EventArgs e) {
