@@ -8,7 +8,7 @@ namespace Flame_Manager {
     public class Player {
         private int id;
         private string login;
-        private string rank;
+        private Rank rank;
         private double scores;
         private int post;
         private string name;
@@ -26,7 +26,7 @@ namespace Flame_Manager {
             }
         }
         
-        public string Rank {
+        public Rank Rank {
             get {
                 return rank;
             }
@@ -56,7 +56,7 @@ namespace Flame_Manager {
             }
         }
 
-        public Player(int id, string login, string rank, double scores, int post, string name, string skype) {
+        public Player(int id, string login, Rank rank, double scores, int post, string name, string skype) {
             this.id = id;
             this.login = login;
             this.rank = rank;

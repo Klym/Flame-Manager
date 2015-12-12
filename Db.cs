@@ -11,6 +11,7 @@ namespace Flame_Manager {
     class Db {
         private MySqlConnection connection;
         private Process plink;
+        private string connectionStr;
         private string mysqlHost;
         private string ftpHost;
         private string database;
@@ -19,6 +20,12 @@ namespace Flame_Manager {
         public MySqlConnection Connection {
             get {
                 return connection;
+            }
+        }
+
+        public string ConnectionStr {
+            get {
+                return connectionStr;
             }
         }
 
@@ -59,7 +66,8 @@ namespace Flame_Manager {
         }
 
         private void connect() {
-            this.connection = new MySqlConnection("SERVER=127.0.0.1; Port=3306; DATABASE=" + database + "; UID=" + database + "; PASSWORD=" + pass + ";");
+            this.connectionStr = "SERVER=127.0.0.1; Port=3306; DATABASE=" + database + "; UID=" + database + "; PASSWORD=" + pass + ";";
+            this.connection = new MySqlConnection(this.connectionStr);
             this.connection.Open();
         }
 

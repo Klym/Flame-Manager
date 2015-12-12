@@ -40,12 +40,23 @@ namespace Flame_Manager {
             this.players = new List<Player>();
             int id, post;
             double scores;
-            string rank, login, name, skype;
+            Rank rank;
+            string login, name, skype;
             while (playersReader.Read()) {
                 id = int.Parse(playersReader["id"].ToString());
                 login = playersReader["name"].ToString();
                 scores = double.Parse(playersReader["scores"].ToString());
-                rank = playersReader["rang"].ToString();
+
+                // Создание объекта должности
+                query = "SELECT * FROM playerRangs WHERE rid = " + playersReader["rang"];
+                MySqlConnection rankCon = new MySqlConnection(db.ConnectionStr);
+                rankCon.Open();
+                MySqlCommand getRank = new MySqlCommand(query, rankCon);
+                MySqlDataReader rankReader = getRank.ExecuteReader();
+                rankReader.Read();
+                rank = new Rank(int.Parse(rankReader["rid"].ToString()), rankReader["rangName"].ToString(), double.Parse(rankReader["minScores"].ToString()), double.Parse(rankReader["maxScores"].ToString()));
+                rankCon.Close();
+
                 post = int.Parse(playersReader["dol"].ToString());
                 name = playersReader["fullName"].ToString();
                 skype = playersReader["skype"].ToString();
@@ -59,8 +70,8 @@ namespace Flame_Manager {
             for (int i = 0; i < this.players.Count; i++) {
                 player = new ListViewItem(players[i].Login);
                 player.SubItems.Add(this.players[i].Scores.ToString());
-                player.SubItems.Add(this.players[i].Rank.ToString());
-                player.SubItems.Add(this.players[i].Name.ToString());
+                player.SubItems.Add(this.players[i].Rank.Name);
+                player.SubItems.Add(this.players[i].Name);
                 PlayerView.Items.Add(player);
             }
         }
