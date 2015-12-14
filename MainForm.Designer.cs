@@ -38,9 +38,11 @@
             this.playerEditMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.редактироватьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.удалитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Options.SuspendLayout();
             this.playersBox.SuspendLayout();
             this.playerEditMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // Options
@@ -96,9 +98,9 @@
             this.playersBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.playersBox.Controls.Add(this.PlayerView);
-            this.playersBox.Location = new System.Drawing.Point(12, 12);
+            this.playersBox.Location = new System.Drawing.Point(12, 106);
             this.playersBox.Name = "playersBox";
-            this.playersBox.Size = new System.Drawing.Size(470, 389);
+            this.playersBox.Size = new System.Drawing.Size(470, 295);
             this.playersBox.TabIndex = 2;
             this.playersBox.TabStop = false;
             this.playersBox.Text = "Состав";
@@ -119,7 +121,7 @@
             this.PlayerView.Location = new System.Drawing.Point(0, 19);
             this.PlayerView.MultiSelect = false;
             this.PlayerView.Name = "PlayerView";
-            this.PlayerView.Size = new System.Drawing.Size(470, 370);
+            this.PlayerView.Size = new System.Drawing.Size(470, 276);
             this.PlayerView.TabIndex = 1;
             this.PlayerView.UseCompatibleStateImageBehavior = false;
             this.PlayerView.View = System.Windows.Forms.View.Details;
@@ -165,11 +167,22 @@
             this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.удалитьToolStripMenuItem.Text = "Удалить";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(494, 100);
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(494, 531);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.Options);
             this.Controls.Add(this.playersBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -180,6 +193,7 @@
             this.Options.PerformLayout();
             this.playersBox.ResumeLayout(false);
             this.playerEditMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -199,6 +213,7 @@
         private System.Windows.Forms.ColumnHeader ScoresHeader;
         private System.Windows.Forms.ColumnHeader RankHeader;
         private System.Windows.Forms.ColumnHeader NameHeader;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
