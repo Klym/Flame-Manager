@@ -364,6 +364,7 @@
             this.Controls.Add(this.nickName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "PlayerEditForm";
             this.Text = "Редактирование игрока: ";
             ((System.ComponentModel.ISupportInitialize)(this.stripe)).EndInit();

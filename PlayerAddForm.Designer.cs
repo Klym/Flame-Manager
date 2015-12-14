@@ -98,6 +98,8 @@
             this.scores.Size = new System.Drawing.Size(80, 20);
             this.scores.TabIndex = 5;
             this.scores.Text = "0";
+            this.scores.TextChanged += new System.EventHandler(this.scores_TextChanged);
+            this.scores.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.scores_KeyPress);
             // 
             // label4
             // 
@@ -112,14 +114,11 @@
             // 
             this.rank.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.rank.FormattingEnabled = true;
-            this.rank.Items.AddRange(new object[] {
-            "Новобранец",
-            "Новичек",
-            "Опытный"});
             this.rank.Location = new System.Drawing.Point(93, 59);
             this.rank.Name = "rank";
             this.rank.Size = new System.Drawing.Size(156, 21);
             this.rank.TabIndex = 8;
+            this.rank.SelectionChangeCommitted += new System.EventHandler(this.rank_SelectionChangeCommitted);
             // 
             // label5
             // 
@@ -225,6 +224,7 @@
             this.Controls.Add(this.nickName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "PlayerAddForm";
             this.Text = "Новый игрок";
             this.ResumeLayout(false);
