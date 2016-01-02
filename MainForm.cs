@@ -61,7 +61,7 @@ namespace Flame_Manager {
                 rank = ranks[int.Parse(playersReader["rang"].ToString()) - 1];
                 name = playersReader["fullName"].ToString();
                 skype = playersReader["skype"].ToString();
-                postIdArr = this.selectPlayerPosts(id);
+                this.selectPlayerPosts(id, out postIdArr);
                 postsArr = new Post[3];
                 for (int i = 0; i < 3; i++) {
                     postsArr[i] = posts.Find(post => post.Id == postIdArr[i]);
@@ -99,19 +99,18 @@ namespace Flame_Manager {
             postCon.Close();
         }
 
-        private int[] selectPlayerPosts(int id) {
+        private void selectPlayerPosts(int id, out int[] postsArr) {
             string query = "SELECT * FROM playerPosts WHERE player = " + id;
             MySqlConnection postCon = new MySqlConnection(db.ConnectionStr);
             postCon.Open();
             MySqlCommand getPost = new MySqlCommand(query, postCon);
             MySqlDataReader postReader = getPost.ExecuteReader();
-            int[] postsArr = new int[3];
+            postsArr = new int[3];
             int i = 0;
             while (postReader.Read()) {
                 postsArr[i++] = int.Parse(postReader["did"].ToString());
             }
             postCon.Close();
-            return postsArr;
         }
 
         private void showPlayerList() {
