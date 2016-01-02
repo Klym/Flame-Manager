@@ -20,6 +20,9 @@ namespace Flame_Manager {
 
         public MainForm() {
             InitializeComponent();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e) {
             try {
                 this.db = new Db();
             } catch (System.ComponentModel.Win32Exception) {
