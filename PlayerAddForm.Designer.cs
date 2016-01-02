@@ -62,10 +62,13 @@
             // 
             this.post1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.post1.FormattingEnabled = true;
+            this.post1.Items.AddRange(new object[] {
+            ""});
             this.post1.Location = new System.Drawing.Point(93, 134);
             this.post1.Name = "post1";
             this.post1.Size = new System.Drawing.Size(156, 21);
             this.post1.TabIndex = 2;
+            this.post1.SelectionChangeCommitted += new System.EventHandler(this.post1_SelectionChangeCommitted);
             // 
             // label2
             // 
@@ -169,19 +172,25 @@
             // 
             this.post2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.post2.FormattingEnabled = true;
+            this.post2.Items.AddRange(new object[] {
+            ""});
             this.post2.Location = new System.Drawing.Point(93, 161);
             this.post2.Name = "post2";
             this.post2.Size = new System.Drawing.Size(156, 21);
             this.post2.TabIndex = 15;
+            this.post2.SelectionChangeCommitted += new System.EventHandler(this.post2_SelectionChangeCommitted);
             // 
             // post3
             // 
             this.post3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.post3.FormattingEnabled = true;
+            this.post3.Items.AddRange(new object[] {
+            ""});
             this.post3.Location = new System.Drawing.Point(93, 188);
             this.post3.Name = "post3";
             this.post3.Size = new System.Drawing.Size(156, 21);
             this.post3.TabIndex = 16;
+            this.post3.SelectionChangeCommitted += new System.EventHandler(this.post3_SelectionChangeCommitted);
             // 
             // PlayerAddForm
             // 

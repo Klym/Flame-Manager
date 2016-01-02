@@ -56,5 +56,35 @@ namespace Flame_Manager {
             if ((e.KeyChar < 48 || e.KeyChar >= 58) && e.KeyChar != 8 && e.KeyChar != 44)
                 e.Handled = true;
         }
+
+        private void post1_SelectionChangeCommitted(object sender, EventArgs e) {
+            if (String.Empty == post1.SelectedItem.ToString()) return;
+            if (post2.SelectedItem != null && post1.SelectedItem.ToString() == post2.SelectedItem.ToString()) {
+                post2.SelectedItem = "";
+            }
+            if (post3.SelectedItem != null && post1.SelectedItem.ToString() == post3.SelectedItem.ToString()) {
+                post3.SelectedItem = "";
+            }
+        }
+
+        private void post2_SelectionChangeCommitted(object sender, EventArgs e) {
+            if (String.Empty == post2.SelectedItem.ToString()) return;
+            if (post1.SelectedItem != null && post2.SelectedItem.ToString() == post1.SelectedItem.ToString()) {
+                post1.SelectedItem = "";
+            }
+            if (post3.SelectedItem != null && post2.SelectedItem.ToString() == post3.SelectedItem.ToString()) {
+                post3.SelectedItem = "";
+            }
+        }
+
+        private void post3_SelectionChangeCommitted(object sender, EventArgs e) {
+            if (String.Empty == post3.SelectedItem.ToString()) return;
+            if (post1.SelectedItem != null && post3.SelectedItem.ToString() == post1.SelectedItem.ToString()) {
+                post1.SelectedItem = "";
+            }
+            if (post2.SelectedItem != null && post3.SelectedItem.ToString() == post2.SelectedItem.ToString()) {
+                post2.SelectedItem = "";
+            }
+        }
     }
 }
