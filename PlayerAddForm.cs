@@ -13,12 +13,21 @@ namespace Flame_Manager {
         public PlayerAddForm() {
             InitializeComponent();
             this.fillRanks();
+            this.fillPosts();
         }
 
         private void fillRanks() {
             // Заполняем comboBox званиями и выбираем текущий
             for (int i = 0; i < MainForm.ranks.Count - 1; i++) {
                 rank.Items.Add(MainForm.ranks[i].Name);
+            }
+        }
+
+        private void fillPosts() {
+            for (int i = 0; i < MainForm.posts.Count; i++) {
+                post1.Items.Add(MainForm.posts[i].Name);
+                post2.Items.Add(MainForm.posts[i].Name);
+                post3.Items.Add(MainForm.posts[i].Name);
             }
         }
 
