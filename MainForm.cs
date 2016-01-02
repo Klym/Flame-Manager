@@ -16,6 +16,7 @@ namespace Flame_Manager {
         private Db db;
         private List<Player> players;
         public static List<Rank> ranks = new List<Rank>();
+        public static List<Post> posts = new List<Post>();
 
         public MainForm() {
             InitializeComponent();
@@ -31,6 +32,7 @@ namespace Flame_Manager {
                 return;
             }
             this.selectRanks();
+            this.selectPosts();
             this.selectPlayers();
             this.showPlayerList();
         }
@@ -72,6 +74,20 @@ namespace Flame_Manager {
                 ranks.Add(rank);
             }
             rankCon.Close();
+        }
+
+        private void selectPosts() {
+            string query = "SELECT * FROM playerDol";
+            MySqlConnection postCon = new MySqlConnection(db.ConnectionStr);
+            postCon.Open();
+            MySqlCommand getPost = new MySqlCommand(query, postCon);
+            MySqlDataReader postReader = getPost.ExecuteReader();
+            Post post;
+            while(postReader.Read()) {
+                post = new Post(int.Parse(postReader["did"].ToString()), postReader["dolName"].ToString(), int.Parse(postReader["bitFlag"].ToString()));
+                posts.Add(post);
+            }
+            postCon.Close();
         }
 
         private void showPlayerList() {
