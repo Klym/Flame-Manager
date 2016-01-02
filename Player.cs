@@ -10,16 +10,16 @@ namespace Flame_Manager {
         public string Login { get; }
         public Rank Rank { get; }
         public double Scores { get; }
-        public int Post { get; }
+        public Post[] Posts { get; }
         public string Name { get; }
         public string Skype { get; }
 
-        public Player(int id, string login, Rank rank, double scores, int post, string name, string skype) {
+        public Player(int id, string login, Rank rank, double scores, Post[] posts, string name, string skype) {
             this.Id = id;
             this.Login = login;
             this.Rank = rank;
             this.Scores = scores;
-            this.Post = post;
+            this.Posts = posts;
             this.Name = name;
             this.Skype = skype;
         }

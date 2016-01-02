@@ -44,20 +44,24 @@ namespace Flame_Manager {
             MySqlCommand cmd = new MySqlCommand(query, playersConnection);
             MySqlDataReader playersReader = cmd.ExecuteReader();
             this.players = new List<Player>();
-            int id, post;
+            int id;
             double scores;
             Rank rank;
             string login, name, skype;
+            int[] postIdArr;
+            Post[] postsArr = new Post[3];
             while (playersReader.Read()) {
                 id = int.Parse(playersReader["id"].ToString());
                 login = playersReader["name"].ToString();
                 scores = double.Parse(playersReader["scores"].ToString());
                 rank = ranks[int.Parse(playersReader["rang"].ToString()) - 1];
-                post = int.Parse(playersReader["dol"].ToString());
                 name = playersReader["fullName"].ToString();
                 skype = playersReader["skype"].ToString();
-
-                this.players.Add(new Player(id, login, rank, scores, post, name, skype));
+                postIdArr = this.selectPlayerPosts(id);
+                for (int i = 0; i < 3; i++) {
+                    postsArr[i] = posts.Find(post => post.Id == postIdArr[i]);
+                }
+                this.players.Add(new Player(id, login, rank, scores, postsArr, name, skype));
             }
             playersConnection.Close();
         }
@@ -88,6 +92,21 @@ namespace Flame_Manager {
                 posts.Add(post);
             }
             postCon.Close();
+        }
+
+        private int[] selectPlayerPosts(int id) {
+            string query = "SELECT * FROM playerPosts WHERE player = " + id;
+            MySqlConnection postCon = new MySqlConnection(db.ConnectionStr);
+            postCon.Open();
+            MySqlCommand getPost = new MySqlCommand(query, postCon);
+            MySqlDataReader postReader = getPost.ExecuteReader();
+            int[] postsArr = new int[3];
+            int i = 0;
+            while (postReader.Read()) {
+                postsArr[i++] = int.Parse(postReader["did"].ToString());
+            }
+            postCon.Close();
+            return postsArr;
         }
 
         private void showPlayerList() {
