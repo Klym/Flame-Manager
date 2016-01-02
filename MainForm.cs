@@ -38,6 +38,7 @@ namespace Flame_Manager {
             this.selectPosts();
             this.selectPlayers();
             this.showPlayerList();
+            playersCountLabel.Text = players.Count().ToString();
         }
 
         private void selectPlayers() {
