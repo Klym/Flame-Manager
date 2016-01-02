@@ -47,8 +47,8 @@
             this.scoresToAdd = new System.Windows.Forms.TextBox();
             this.stripe = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.post2 = new System.Windows.Forms.ComboBox();
+            this.post3 = new System.Windows.Forms.ComboBox();
             this.viewPlayerButton = new System.Windows.Forms.Button();
             this.resetButton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -149,16 +149,11 @@
             // 
             this.post1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.post1.FormattingEnabled = true;
-            this.post1.Items.AddRange(new object[] {
-            "Зам. Командира",
-            "Командир",
-            "Стрелок",
-            "Штурмовик",
-            "Медик"});
             this.post1.Location = new System.Drawing.Point(95, 131);
             this.post1.Name = "post1";
             this.post1.Size = new System.Drawing.Size(155, 21);
             this.post1.TabIndex = 17;
+            this.post1.SelectionChangeCommitted += new System.EventHandler(this.post1_SelectionChangeCommitted);
             // 
             // label1
             // 
@@ -271,35 +266,25 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Нашивка";
             // 
-            // comboBox1
+            // post2
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Зам. Командира",
-            "Командир",
-            "Стрелок",
-            "Штурмовик",
-            "Медик"});
-            this.comboBox1.Location = new System.Drawing.Point(95, 158);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(155, 21);
-            this.comboBox1.TabIndex = 40;
+            this.post2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.post2.FormattingEnabled = true;
+            this.post2.Location = new System.Drawing.Point(95, 158);
+            this.post2.Name = "post2";
+            this.post2.Size = new System.Drawing.Size(155, 21);
+            this.post2.TabIndex = 40;
+            this.post2.SelectionChangeCommitted += new System.EventHandler(this.post2_SelectionChangeCommitted);
             // 
-            // comboBox2
+            // post3
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Зам. Командира",
-            "Командир",
-            "Стрелок",
-            "Штурмовик",
-            "Медик"});
-            this.comboBox2.Location = new System.Drawing.Point(95, 185);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(155, 21);
-            this.comboBox2.TabIndex = 41;
+            this.post3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.post3.FormattingEnabled = true;
+            this.post3.Location = new System.Drawing.Point(95, 185);
+            this.post3.Name = "post3";
+            this.post3.Size = new System.Drawing.Size(155, 21);
+            this.post3.TabIndex = 41;
+            this.post3.SelectionChangeCommitted += new System.EventHandler(this.post3_SelectionChangeCommitted);
             // 
             // viewPlayerButton
             // 
@@ -339,8 +324,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(473, 379);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.post3);
+            this.Controls.Add(this.post2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.scoresToAdd);
             this.Controls.Add(this.subScoresButton);
@@ -399,8 +384,8 @@
         private System.Windows.Forms.TextBox scoresToAdd;
         private System.Windows.Forms.PictureBox stripe;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox post2;
+        private System.Windows.Forms.ComboBox post3;
         private System.Windows.Forms.Button viewPlayerButton;
         private System.Windows.Forms.Button resetButton;
         private System.Windows.Forms.GroupBox groupBox2;

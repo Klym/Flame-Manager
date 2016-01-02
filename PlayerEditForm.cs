@@ -24,16 +24,33 @@ namespace Flame_Manager {
             nickName.Text = this.player.Login;
             scores.Text = this.player.Scores.ToString();
             // Заполняем comboBox званиями и выбираем текущий
+            rank.Items.Clear();
             for (int i = 0; i < MainForm.ranks.Count - 1; i++) {
                 rank.Items.Add(MainForm.ranks[i].Name);
                 if (MainForm.ranks[i].Name == this.player.Rank.Name) {
                     rank.SelectedItem = this.player.Rank.Name;
                 }
             }
+            // Запонляем должности
+            this.fillPost(post1, 0);
+            this.fillPost(post2, 1);
+            this.fillPost(post3, 2);
+
             name.Text = this.player.Name;
             skype.Text = this.player.Skype;
             // Подгружаем изображение нашивки с сайта
             this.setImageOfStripe(this.player.Rank.Id);
+        }
+
+        private void fillPost(ComboBox post, int pnum) {
+            post.Items.Clear();
+            post.Items.Add("");
+            for (int i = 0; i < MainForm.posts.Count; i++) {
+                post.Items.Add(MainForm.posts[i].Name);
+                if (this.player.Posts[pnum] != null && this.player.Posts[pnum].Name == MainForm.posts[i].Name) {
+                    post.SelectedItem = this.player.Posts[pnum].Name;
+                }
+            }
         }
 
         private void updateButton_Click(object sender, EventArgs e) {
@@ -96,6 +113,36 @@ namespace Flame_Manager {
                 stripe.Location = new Point(24, 19);
             }
             stripe.Image = Image.FromFile(@"rangs/" + stripeNum + ".png");
+        }
+
+        private void post1_SelectionChangeCommitted(object sender, EventArgs e) {
+            if (String.Empty == post1.SelectedItem.ToString()) return;
+            if (post2.SelectedItem != null && post1.SelectedItem.ToString() == post2.SelectedItem.ToString()) {
+                post2.SelectedItem = "";
+            }
+            if (post3.SelectedItem != null && post1.SelectedItem.ToString() == post3.SelectedItem.ToString()) {
+                post3.SelectedItem = "";
+            }
+        }
+
+        private void post2_SelectionChangeCommitted(object sender, EventArgs e) {
+            if (String.Empty == post2.SelectedItem.ToString()) return;
+            if (post1.SelectedItem != null && post2.SelectedItem.ToString() == post1.SelectedItem.ToString()) {
+                post1.SelectedItem = "";
+            }
+            if (post3.SelectedItem != null && post2.SelectedItem.ToString() == post3.SelectedItem.ToString()) {
+                post3.SelectedItem = "";
+            }
+        }
+
+        private void post3_SelectionChangeCommitted(object sender, EventArgs e) {
+            if (String.Empty == post3.SelectedItem.ToString()) return;
+            if (post1.SelectedItem != null && post3.SelectedItem.ToString() == post1.SelectedItem.ToString()) {
+                post1.SelectedItem = "";
+            }
+            if (post2.SelectedItem != null && post3.SelectedItem.ToString() == post2.SelectedItem.ToString()) {
+                post2.SelectedItem = "";
+            }
         }
     }
 }

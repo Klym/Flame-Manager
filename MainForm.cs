@@ -49,7 +49,7 @@ namespace Flame_Manager {
             Rank rank;
             string login, name, skype;
             int[] postIdArr;
-            Post[] postsArr = new Post[3];
+            Post[] postsArr;
             while (playersReader.Read()) {
                 id = int.Parse(playersReader["id"].ToString());
                 login = playersReader["name"].ToString();
@@ -58,6 +58,7 @@ namespace Flame_Manager {
                 name = playersReader["fullName"].ToString();
                 skype = playersReader["skype"].ToString();
                 postIdArr = this.selectPlayerPosts(id);
+                postsArr = new Post[3];
                 for (int i = 0; i < 3; i++) {
                     postsArr[i] = posts.Find(post => post.Id == postIdArr[i]);
                 }
