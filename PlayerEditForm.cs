@@ -98,6 +98,9 @@ namespace Flame_Manager {
 
         private void scores_TextChanged(object sender, EventArgs e) {
             if (String.Empty == scores.Text) return;
+            if (int.Parse(scores.Text) > 500000) {
+                scores.Text = "480000";
+            }
             for (int i = 0; i < MainForm.ranks.Count - 1; i++) {
                 if (double.Parse(scores.Text) >= MainForm.ranks[i].MinScores && double.Parse(scores.Text) <= MainForm.ranks[i].MaxScores) {
                     rank.SelectedItem = MainForm.ranks[i].Name;
