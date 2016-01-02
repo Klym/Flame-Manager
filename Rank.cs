@@ -6,40 +6,16 @@ using System.Threading.Tasks;
 
 namespace Flame_Manager {
     public class Rank {
-        private int id;
-        private string name;
-        private double minScores;
-        private double maxScores;
-
-        public int Id {
-            get {
-                return id;
-            }
-        }
-
-        public string Name {
-            get {
-                return name;
-            }
-        }
-
-        public double MinScores {
-            get {
-                return minScores;
-            }
-        }
-
-        public double MaxScores {
-            get {
-                return maxScores;
-            }
-        }
+        public int Id { get; }
+        public string Name { get; }
+        public double MinScores { get; }
+        public double MaxScores { get; }
 
         public Rank(int id, string name, double minScores, double maxScores) {
-            this.id = id;
-            this.name = name;
-            this.minScores = minScores;
-            this.maxScores = maxScores;
+            this.Id = id;
+            this.Name = name;
+            this.MinScores = minScores;
+            this.MaxScores = maxScores;
         }
     }
 }

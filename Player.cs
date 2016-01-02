@@ -6,64 +6,22 @@ using System.Threading.Tasks;
 
 namespace Flame_Manager {
     public class Player {
-        private int id;
-        private string login;
-        private Rank rank;
-        private double scores;
-        private int post;
-        private string name;
-        private string skype;
-
-        public int Id {
-            get {
-                return id;
-            }
-        }
-        
-        public string Login {
-            get {
-                return login;
-            }
-        }
-        
-        public Rank Rank {
-            get {
-                return rank;
-            }
-        }
-        
-        public double Scores {
-            get {
-                return scores;
-            }
-        }
-       
-        public int Post {
-            get {
-                return post;
-            }
-        }
-       
-        public string Name {
-            get {
-                return name;
-            }
-        }
-       
-        public string Skype {
-            get {
-                return skype;
-            }
-        }
+        public int Id { get; }
+        public string Login { get; }
+        public Rank Rank { get; }
+        public double Scores { get; }
+        public int Post { get; }
+        public string Name { get; }
+        public string Skype { get; }
 
         public Player(int id, string login, Rank rank, double scores, int post, string name, string skype) {
-            this.id = id;
-            this.login = login;
-            this.rank = rank;
-            this.scores = scores;
-            this.post = post;
-            this.name = name;
-            this.skype = skype;
+            this.Id = id;
+            this.Login = login;
+            this.Rank = rank;
+            this.Scores = scores;
+            this.Post = post;
+            this.Name = name;
+            this.Skype = skype;
         }
     }
 }
