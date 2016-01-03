@@ -114,14 +114,17 @@ namespace Flame_Manager {
         }
 
         private void showPlayerList() {
-            ListViewItem player;
             for (int i = 0; i < this.players.Count; i++) {
-                player = new ListViewItem(players[i].Login);
-                player.SubItems.Add(this.players[i].Scores.ToString());
-                player.SubItems.Add(this.players[i].Rank.Name);
-                player.SubItems.Add(this.players[i].Name);
-                PlayerView.Items.Add(player);
+                PlayerView.Items.Add(this.writePlayer(players[i]));
             }
+        }
+
+        private ListViewItem writePlayer(Player p) {
+            ListViewItem player = new ListViewItem(p.Login);
+            player.SubItems.Add(p.Scores.ToString());
+            player.SubItems.Add(p.Rank.Name);
+            player.SubItems.Add(p.Name);
+            return player;
         }
 
         private void addButton_Click(object sender, EventArgs e) {
@@ -135,8 +138,10 @@ namespace Flame_Manager {
 
         private void редактироватьToolStripMenuItem_Click(object sender, EventArgs e) {
             if (PlayerView.SelectedItems.Count > 0) {
-                Form editForm = new PlayerEditForm(players[PlayerView.SelectedItems[0].Index]);
+                int index = PlayerView.SelectedItems[0].Index;
+                Form editForm = new PlayerEditForm(db, players[index]);
                 editForm.ShowDialog();
+                PlayerView.Items[index] = this.writePlayer(players[index]);
             } else {
                 MessageBox.Show("Вы не выбрали игрока.");
             }

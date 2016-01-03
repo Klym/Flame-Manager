@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 namespace Flame_Manager {
     public class Player {
         public int Id { get; }
-        public string Login { get; }
-        public Rank Rank { get; }
-        public double Scores { get; }
-        public Post[] Posts { get; }
-        public string Name { get; }
-        public string Skype { get; }
+        public string Login { get; set; }
+        public Rank Rank { get; set; }
+        public double Scores { get; set; }
+        public Post[] Posts { get; set; }
+        public string Name { get; set; }
+        public string Skype { get; set; }
 
         public Player(int id, string login, Rank rank, double scores, Post[] posts, string name, string skype) {
             this.Id = id;
@@ -22,6 +22,14 @@ namespace Flame_Manager {
             this.Posts = posts;
             this.Name = name;
             this.Skype = skype;
+        }
+
+        public int countPostBits() {
+            int bitFlag = 0;
+            for (int i = 0; i < 3; i++) {
+                bitFlag += (this.Posts[i] != null) ? this.Posts[i].bitFlag : 0;
+            }
+            return bitFlag;
         }
     }
 }

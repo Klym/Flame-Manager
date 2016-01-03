@@ -8,7 +8,7 @@ using MySql.Data.MySqlClient;
 using System.Diagnostics;
 
 namespace Flame_Manager {
-    class Db {
+    public class Db {
         private Process plink;
         private string connectionStr;
         private string mysqlHost;

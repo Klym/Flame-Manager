@@ -8,13 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace Flame_Manager {
     public partial class PlayerEditForm : Form {
+        private Db db;
         private Player player;
 
-        public PlayerEditForm(Player player) {
+        public PlayerEditForm(Db db, Player player) {
             InitializeComponent();
+            this.db = db;
             this.player = player;
             this.Text += this.player.Login;
             this.fillTextBoxes();
@@ -54,7 +57,22 @@ namespace Flame_Manager {
         }
 
         private void updateButton_Click(object sender, EventArgs e) {
+            this.player.Login = nickName.Text;
+            this.player.Rank = MainForm.ranks.Find(prank => prank.Name == rank.SelectedItem.ToString());
+            this.player.Scores = double.Parse(scores.Text);
+            this.player.Posts[0] = (post1.SelectedItem != null) ? MainForm.posts.Find(ppost => ppost.Name == post1.SelectedItem.ToString()) : null;
+            this.player.Posts[1] = (post2.SelectedItem != null) ? MainForm.posts.Find(ppost => ppost.Name == post2.SelectedItem.ToString()) : null;
+            this.player.Posts[2] = (post3.SelectedItem != null) ? MainForm.posts.Find(ppost => ppost.Name == post3.SelectedItem.ToString()) : null;
+            this.player.Name = name.Text;
+            this.player.Skype = skype.Text;
+        }
 
+        private void updatePlayer() {
+            MySqlConnection updateConnection = new MySqlConnection(db.ConnectionStr);
+            updateConnection.Open();
+            string vals = this.player.Login + "," + this.player.Scores + "," + this.player.Rank.Id + "," + this.player.countPostBits() + "," + this.player.Name + "," + this.player.Skype;
+            string query = "UPDATE sostav (name,scores,rang,dol,fullName,skype) VALUES ( " + vals + " ) WHERE id = " + this.player.Id;
+            MySqlCommand cmd = new MySqlCommand(query, updateConnection);
         }
 
         private void addScoresButton_Click(object sender, EventArgs e) {
