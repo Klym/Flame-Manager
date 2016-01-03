@@ -65,7 +65,7 @@ namespace Flame_Manager {
         }
 
         private void connect() {
-            this.connectionStr = "SERVER=127.0.0.1; Port=3306; DATABASE=" + database + "; UID=" + database + "; PASSWORD=" + pass + ";";
+            this.connectionStr = "SERVER=127.0.0.1; Port=3306; DATABASE=" + database + "; UID=" + database + "; PASSWORD=" + pass + "; CHARSET=utf8;";
         }
 
         ~Db() {

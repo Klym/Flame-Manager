@@ -65,14 +65,22 @@ namespace Flame_Manager {
             this.player.Posts[2] = (post3.SelectedItem != null) ? MainForm.posts.Find(ppost => ppost.Name == post3.SelectedItem.ToString()) : null;
             this.player.Name = name.Text;
             this.player.Skype = skype.Text;
+            this.updatePlayer();
         }
 
         private void updatePlayer() {
             MySqlConnection updateConnection = new MySqlConnection(db.ConnectionStr);
             updateConnection.Open();
-            string vals = this.player.Login + "," + this.player.Scores + "," + this.player.Rank.Id + "," + this.player.countPostBits() + "," + this.player.Name + "," + this.player.Skype;
-            string query = "UPDATE sostav (name,scores,rang,dol,fullName,skype) VALUES ( " + vals + " ) WHERE id = " + this.player.Id;
+            string vals = "name = '" + this.player.Login + "', scores = '" + this.player.Scores + "', rang = '" + this.player.Rank.Id + "', dol = '" + this.player.countPostBits() + "', fullName = '" + this.player.Name + "', skype = '" + this.player.Skype + "'";
+            string query = "UPDATE sostav SET " + vals + " WHERE id = '" + 0 + "'";
             MySqlCommand cmd = new MySqlCommand(query, updateConnection);
+            int rowCount = cmd.ExecuteNonQuery();
+            if (rowCount > 0) {
+                MessageBox.Show("Игрок " + this.player.Login + " успешно обновлен.");
+            } else {
+                MessageBox.Show("Ошибка. Игрок " + this.player.Login + " не обновлен.");
+            }
+            updateConnection.Close();
         }
 
         private void addScoresButton_Click(object sender, EventArgs e) {

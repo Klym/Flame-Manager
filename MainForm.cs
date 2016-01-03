@@ -141,6 +141,7 @@ namespace Flame_Manager {
                 int index = PlayerView.SelectedItems[0].Index;
                 Form editForm = new PlayerEditForm(db, players[index]);
                 editForm.ShowDialog();
+                // Обновляем в списке изменившуюся информацию
                 PlayerView.Items[index] = this.writePlayer(players[index]);
             } else {
                 MessageBox.Show("Вы не выбрали игрока.");
