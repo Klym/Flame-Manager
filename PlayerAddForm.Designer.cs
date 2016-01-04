@@ -157,6 +157,7 @@
             this.insertButton.TabIndex = 13;
             this.insertButton.Text = "Добавить";
             this.insertButton.UseVisualStyleBackColor = true;
+            this.insertButton.Click += new System.EventHandler(this.insertButton_Click);
             // 
             // skipButton
             // 

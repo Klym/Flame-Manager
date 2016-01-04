@@ -128,8 +128,12 @@ namespace Flame_Manager {
         }
 
         private void addButton_Click(object sender, EventArgs e) {
-            Form addForm = new PlayerAddForm();
+            Player newPlayer = new Player(0);
+            Form addForm = new PlayerAddForm(newPlayer);
             addForm.ShowDialog();
+            this.players.Add(newPlayer);
+            PlayerView.Items.Add(this.writePlayer(newPlayer));
+            playersCountLabel.Text = this.players.Count.ToString();
         }
 
         private void viewButton_Click(object sender, EventArgs e) {

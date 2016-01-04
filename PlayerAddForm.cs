@@ -10,10 +10,13 @@ using System.Windows.Forms;
 
 namespace Flame_Manager {
     public partial class PlayerAddForm : Form {
-        public PlayerAddForm() {
+        private Player player;
+
+        public PlayerAddForm(Player player) {
             InitializeComponent();
             this.fillRanks();
             this.fillPosts();
+            this.player = player;
         }
 
         private void fillRanks() {
@@ -29,6 +32,18 @@ namespace Flame_Manager {
                 post2.Items.Add(MainForm.posts[i].Name);
                 post3.Items.Add(MainForm.posts[i].Name);
             }
+        }
+
+        private void insertButton_Click(object sender, EventArgs e) {
+            this.player.Login = nickName.Text;
+            this.player.Rank = MainForm.ranks.Find(prank => prank.Name == rank.SelectedItem.ToString());
+            this.player.Scores = double.Parse(scores.Text);
+            this.player.Posts[0] = (post1.SelectedItem != null) ? MainForm.posts.Find(ppost => ppost.Name == post1.SelectedItem.ToString()) : null;
+            this.player.Posts[1] = (post2.SelectedItem != null) ? MainForm.posts.Find(ppost => ppost.Name == post2.SelectedItem.ToString()) : null;
+            this.player.Posts[2] = (post3.SelectedItem != null) ? MainForm.posts.Find(ppost => ppost.Name == post3.SelectedItem.ToString()) : null;
+            this.player.Name = name.Text;
+            this.player.Skype = skype.Text;
+            this.Close();
         }
 
         private void skipButton_Click(object sender, EventArgs e) {
@@ -86,5 +101,6 @@ namespace Flame_Manager {
                 post2.SelectedItem = "";
             }
         }
+
     }
 }
