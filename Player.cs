@@ -14,6 +14,11 @@ namespace Flame_Manager {
         public string Name { get; set; }
         public string Skype { get; set; }
 
+        public Player(int id) {
+            this.Id = id;
+            this.Posts = new Post[3];
+        }
+
         public Player(int id, string login, Rank rank, double scores, Post[] posts, string name, string skype) {
             this.Id = id;
             this.Login = login;

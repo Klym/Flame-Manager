@@ -57,30 +57,47 @@ namespace Flame_Manager {
         }
 
         private void updateButton_Click(object sender, EventArgs e) {
-            this.player.Login = nickName.Text;
-            this.player.Rank = MainForm.ranks.Find(prank => prank.Name == rank.SelectedItem.ToString());
-            this.player.Scores = double.Parse(scores.Text);
-            this.player.Posts[0] = (post1.SelectedItem != null) ? MainForm.posts.Find(ppost => ppost.Name == post1.SelectedItem.ToString()) : null;
-            this.player.Posts[1] = (post2.SelectedItem != null) ? MainForm.posts.Find(ppost => ppost.Name == post2.SelectedItem.ToString()) : null;
-            this.player.Posts[2] = (post3.SelectedItem != null) ? MainForm.posts.Find(ppost => ppost.Name == post3.SelectedItem.ToString()) : null;
-            this.player.Name = name.Text;
-            this.player.Skype = skype.Text;
-            this.updatePlayer();
+            Player uplayer = new Player(this.player.Id);
+            uplayer.Login = nickName.Text;
+            uplayer.Rank = MainForm.ranks.Find(prank => prank.Name == rank.SelectedItem.ToString());
+            uplayer.Scores = double.Parse(scores.Text);
+            uplayer.Posts[0] = (post1.SelectedItem != null) ? MainForm.posts.Find(ppost => ppost.Name == post1.SelectedItem.ToString()) : null;
+            uplayer.Posts[1] = (post2.SelectedItem != null) ? MainForm.posts.Find(ppost => ppost.Name == post2.SelectedItem.ToString()) : null;
+            uplayer.Posts[2] = (post3.SelectedItem != null) ? MainForm.posts.Find(ppost => ppost.Name == post3.SelectedItem.ToString()) : null;
+            uplayer.Name = name.Text;
+            uplayer.Skype = skype.Text;
+            if (this.updatePlayer(uplayer)) {
+                this.player.Login = uplayer.Login;
+                this.player.Rank = uplayer.Rank;
+                this.player.Scores = uplayer.Scores;
+                this.player.Posts = uplayer.Posts;
+                this.player.Name = uplayer.Name;
+                this.player.Skype = uplayer.Skype;
+            }
         }
 
-        private void updatePlayer() {
+        private bool updatePlayer(Player uplayer) {
             MySqlConnection updateConnection = new MySqlConnection(db.ConnectionStr);
             updateConnection.Open();
-            string vals = "name = '" + this.player.Login + "', scores = '" + this.player.Scores + "', rang = '" + this.player.Rank.Id + "', dol = '" + this.player.countPostBits() + "', fullName = '" + this.player.Name + "', skype = '" + this.player.Skype + "'";
-            string query = "UPDATE sostav SET " + vals + " WHERE id = '" + 0 + "'";
+            string vals = "name = '" + uplayer.Login + "', scores = '" + uplayer.Scores + "', rang = '" + uplayer.Rank.Id + "', dol = '" + uplayer.countPostBits() + "', fullName = '" + uplayer.Name + "', skype = '" + uplayer.Skype + "'";
+            string query = "UPDATE sostav SET " + vals + " WHERE id = '" + uplayer.Id + "'";
             MySqlCommand cmd = new MySqlCommand(query, updateConnection);
-            int rowCount = cmd.ExecuteNonQuery();
-            if (rowCount > 0) {
-                MessageBox.Show("Игрок " + this.player.Login + " успешно обновлен.");
-            } else {
-                MessageBox.Show("Ошибка. Игрок " + this.player.Login + " не обновлен.");
+            int rowCount = 0;
+            try {
+                rowCount = cmd.ExecuteNonQuery();
+            } catch (MySqlException ex) {
+                MessageBox.Show("Ошибка базы данных: \n" + ex.Message, "MySQLError");
+                updateConnection.Close();
+                return false;
             }
             updateConnection.Close();
+            if (rowCount > 0) {
+                MessageBox.Show("Игрок " + uplayer.Login + " успешно обновлен.");
+                return true;
+            } else {
+                MessageBox.Show("Игрок " + uplayer.Login + " не обновлен.", "Ошибка");
+                return false;
+            }
         }
 
         private void addScoresButton_Click(object sender, EventArgs e) {
