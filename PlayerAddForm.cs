@@ -59,6 +59,19 @@ namespace Flame_Manager {
             return lastId;
         }
 
+        private void insertPosts() {
+            MySqlConnection insertCon = new MySqlConnection(this.db.ConnectionStr);
+            insertCon.Open();
+            MySqlCommand cmd;
+            for (int i = 0, id = 0; i < 3; i++) {
+                id = (this.player.Posts[i] != null) ? this.player.Posts[i].Id : 0;
+                string query = "INSERT INTO playerPosts SET player = '" + this.player.Id + "', did = '" + id + "'";
+                cmd = new MySqlCommand(query, insertCon);
+                cmd.ExecuteNonQuery();
+            }
+            insertCon.Close();
+        }
+
         private void insertButton_Click(object sender, EventArgs e) {
             this.player.Login = nickName.Text;
             this.player.Rank = (rank.SelectedItem != null) ? MainForm.ranks.Find(prank => prank.Name == rank.SelectedItem.ToString()) : null;
@@ -75,8 +88,12 @@ namespace Flame_Manager {
                 return;
             }
             this.player.Id = this.insertPlayer();
-            if (this.player.Id != 0)
+            if (this.player.Id != 0) {
+                this.insertPosts();
                 this.Close();
+            } else {
+                MessageBox.Show("По неизвестной причине игрок не был добавлен.", "Ошибка");
+            }
         }
 
         private void skipButton_Click(object sender, EventArgs e) {
