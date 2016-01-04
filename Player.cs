@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Flame_Manager {
     public class Player {
-        public int Id { get; }
+        public int Id { get; set; }
         public string Login { get; set; }
         public Rank Rank { get; set; }
         public double Scores { get; set; }

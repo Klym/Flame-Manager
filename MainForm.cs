@@ -129,7 +129,7 @@ namespace Flame_Manager {
 
         private void addButton_Click(object sender, EventArgs e) {
             Player newPlayer = new Player(0);
-            Form addForm = new PlayerAddForm(newPlayer);
+            Form addForm = new PlayerAddForm(db, newPlayer);
             addForm.ShowDialog();
             if (newPlayer.Id == 0) return;
             this.players.Add(newPlayer);

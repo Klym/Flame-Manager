@@ -7,15 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace Flame_Manager {
     public partial class PlayerAddForm : Form {
+        private Db db;
         private Player player;
 
-        public PlayerAddForm(Player player) {
+        public PlayerAddForm(Db db, Player player) {
             InitializeComponent();
             this.fillRanks();
             this.fillPosts();
+            this.db = db;
             this.player = player;
         }
 
@@ -24,6 +27,7 @@ namespace Flame_Manager {
             for (int i = 0; i < MainForm.ranks.Count - 1; i++) {
                 rank.Items.Add(MainForm.ranks[i].Name);
             }
+            rank.SelectedItem = rank.Items[0];
         }
 
         private void fillPosts() {
@@ -32,6 +36,27 @@ namespace Flame_Manager {
                 post2.Items.Add(MainForm.posts[i].Name);
                 post3.Items.Add(MainForm.posts[i].Name);
             }
+        }
+
+        private int insertPlayer() {
+            MySqlConnection insertCon = new MySqlConnection(this.db.ConnectionStr);
+            insertCon.Open();
+            string vals = "'" + this.player.Login + "','" + this.player.Scores + "','" + this.player.Rank.Id + "','" + this.player.countPostBits() + "','" + this.player.Name + "','" + this.player.Skype + "'";
+            string query = "INSERT INTO sostav (name,scores,rang,dol,fullName,skype) VALUES(" + vals + ")";
+            MySqlCommand cmd = new MySqlCommand(query, insertCon);
+            int lastId = 0;
+            try {
+                int rows = cmd.ExecuteNonQuery();
+                if (rows > 0) {
+                    lastId = (int)cmd.LastInsertedId;
+                }
+            } catch (MySqlException ex) {
+                MessageBox.Show("Ошибка базы данных: \n" + ex.Message, "MySQLError");
+                insertCon.Close();
+                return 0;
+            }
+            insertCon.Close();
+            return lastId;
         }
 
         private void insertButton_Click(object sender, EventArgs e) {
@@ -49,7 +74,9 @@ namespace Flame_Manager {
                 MessageBox.Show(ex.Message, "Ошибка");
                 return;
             }
-            this.Close();
+            this.player.Id = this.insertPlayer();
+            if (this.player.Id != 0)
+                this.Close();
         }
 
         private void skipButton_Click(object sender, EventArgs e) {
