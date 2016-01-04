@@ -73,6 +73,7 @@ namespace Flame_Manager {
                 this.player.Posts = uplayer.Posts;
                 this.player.Name = uplayer.Name;
                 this.player.Skype = uplayer.Skype;
+                this.updatePosts();
             }
         }
 
@@ -98,6 +99,31 @@ namespace Flame_Manager {
                 MessageBox.Show("Игрок " + uplayer.Login + " не обновлен.", "Ошибка");
                 return false;
             }
+        }
+
+        private void updatePosts() {
+            string squery = "SELECT id FROM playerPosts WHERE player = " + this.player.Id;
+            MySqlConnection postCon = new MySqlConnection(db.ConnectionStr);
+            postCon.Open();
+            MySqlCommand getPost = new MySqlCommand(squery, postCon);
+            MySqlDataReader postReader = getPost.ExecuteReader();
+            int[] postIds = new int[3];
+            int i = 0;
+            while (postReader.Read()) {
+                postIds[i++] = int.Parse(postReader["id"].ToString());
+            }
+            postCon.Close();
+            MySqlConnection updateConnection = new MySqlConnection(db.ConnectionStr);
+            updateConnection.Open();
+            int id;
+            for (i = 0; i < 3; i++) {
+                id = (this.player.Posts[i] == null) ? 0 : this.player.Posts[i].Id;
+                string vals = "did = '" + id + "'";
+                string query = "UPDATE playerPosts SET " + vals + " WHERE id = '" + postIds[i] + "'";
+                MySqlCommand cmd = new MySqlCommand(query, updateConnection);
+                cmd.ExecuteNonQuery();
+            }
+            updateConnection.Close();
         }
 
         private void addScoresButton_Click(object sender, EventArgs e) {
