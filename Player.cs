@@ -36,5 +36,24 @@ namespace Flame_Manager {
             }
             return bitFlag;
         }
+
+        public bool isValid() {
+            if (this.Login == String.Empty) {
+                throw new Exception("Вы не ввели позывной.");
+            }
+            if (this.Rank == null) {
+                throw new Exception("Вы не выбрали ранг.");
+            }
+            if (this.Posts[0] == null && this.Posts[1] == null && this.Posts[2] == null) {
+                throw new Exception("Игрок должен иметь хотя бы одну должность.");
+            }
+            if (this.Name == String.Empty) {
+                throw new Exception("Вы не ввели имя.");
+            }
+            if (this.Skype == String.Empty) {
+                throw new Exception("Вы не ввели скайп.");
+            }
+            return true;
+        }
     }
 }

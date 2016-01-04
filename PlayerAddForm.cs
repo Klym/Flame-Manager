@@ -36,13 +36,19 @@ namespace Flame_Manager {
 
         private void insertButton_Click(object sender, EventArgs e) {
             this.player.Login = nickName.Text;
-            this.player.Rank = MainForm.ranks.Find(prank => prank.Name == rank.SelectedItem.ToString());
-            this.player.Scores = double.Parse(scores.Text);
+            this.player.Rank = (rank.SelectedItem != null) ? MainForm.ranks.Find(prank => prank.Name == rank.SelectedItem.ToString()) : null;
+            this.player.Scores = (scores.Text != String.Empty) ? double.Parse(scores.Text) : 0;
             this.player.Posts[0] = (post1.SelectedItem != null) ? MainForm.posts.Find(ppost => ppost.Name == post1.SelectedItem.ToString()) : null;
             this.player.Posts[1] = (post2.SelectedItem != null) ? MainForm.posts.Find(ppost => ppost.Name == post2.SelectedItem.ToString()) : null;
             this.player.Posts[2] = (post3.SelectedItem != null) ? MainForm.posts.Find(ppost => ppost.Name == post3.SelectedItem.ToString()) : null;
             this.player.Name = name.Text;
             this.player.Skype = skype.Text;
+            try {
+                this.player.isValid();
+            } catch(Exception ex) {
+                MessageBox.Show(ex.Message, "Ошибка");
+                return;
+            }
             this.Close();
         }
 

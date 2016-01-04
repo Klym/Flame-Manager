@@ -131,6 +131,7 @@ namespace Flame_Manager {
             Player newPlayer = new Player(0);
             Form addForm = new PlayerAddForm(newPlayer);
             addForm.ShowDialog();
+            if (newPlayer.Id == 0) return;
             this.players.Add(newPlayer);
             PlayerView.Items.Add(this.writePlayer(newPlayer));
             playersCountLabel.Text = this.players.Count.ToString();
