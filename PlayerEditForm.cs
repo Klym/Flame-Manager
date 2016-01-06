@@ -66,6 +66,12 @@ namespace Flame_Manager {
             uplayer.Posts[2] = (post3.SelectedItem != null) ? MainForm.posts.Find(ppost => ppost.Name == post3.SelectedItem.ToString()) : null;
             uplayer.Name = name.Text;
             uplayer.Skype = skype.Text;
+            try {
+                uplayer.isValid();
+            } catch(Exception ex) {
+                MessageBox.Show(ex.Message, "Ошибка");
+                return;
+            }
             if (this.updatePlayer(uplayer)) {
                 this.player.Login = uplayer.Login;
                 this.player.Rank = uplayer.Rank;
