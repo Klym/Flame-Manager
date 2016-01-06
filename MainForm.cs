@@ -156,12 +156,20 @@ namespace Flame_Manager {
         private void удалитьToolStripMenuItem_Click(object sender, EventArgs e) {
             if (PlayerView.SelectedItems.Count > 0) {
                 int index = PlayerView.SelectedItems[0].Index;
-                MessageBox.Show("Вы действительно хотите удалить игрока " + players[index].Name, "Удалить", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                // Обновляем в списке изменившуюся информацию
-                PlayerView.Items[index] = this.writePlayer(players[index]);
+                DialogResult res = MessageBox.Show("Вы действительно хотите удалить игрока " + players[index].Login, "Удалить", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (res == DialogResult.No) return;
+                this.deletePlayer(this.players[index]);
+                // Удаляем игрока из списка и обновляем количество
+                this.players.RemoveAt(index);
+                PlayerView.Items.RemoveAt(index);
+                playersCountLabel.Text = this.players.Count.ToString();
             } else {
                 MessageBox.Show("Вы не выбрали игрока.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void deletePlayer(Player p) {
+            MessageBox.Show(p.Id.ToString());
         }
     }
 }
