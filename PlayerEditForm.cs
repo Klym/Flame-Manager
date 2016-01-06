@@ -69,7 +69,7 @@ namespace Flame_Manager {
             try {
                 uplayer.isValid();
             } catch(Exception ex) {
-                MessageBox.Show(ex.Message, "Ошибка");
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (this.updatePlayer(uplayer)) {
@@ -93,16 +93,16 @@ namespace Flame_Manager {
             try {
                 rowCount = cmd.ExecuteNonQuery();
             } catch (MySqlException ex) {
-                MessageBox.Show("Ошибка базы данных: \n" + ex.Message, "MySQLError");
+                MessageBox.Show("Ошибка базы данных: \n" + ex.Message, "MySQLError", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 updateConnection.Close();
                 return false;
             }
             updateConnection.Close();
             if (rowCount > 0) {
-                MessageBox.Show("Игрок " + uplayer.Login + " успешно обновлен.");
+                MessageBox.Show("Игрок " + uplayer.Login + " успешно обновлен.", "Игрок обновлен", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
             } else {
-                MessageBox.Show("Игрок " + uplayer.Login + " не обновлен.", "Ошибка");
+                MessageBox.Show("Игрок " + uplayer.Login + " не обновлен.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }

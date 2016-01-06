@@ -26,11 +26,11 @@ namespace Flame_Manager {
             try {
                 this.db = new Db();
             } catch (System.ComponentModel.Win32Exception) {
-                MessageBox.Show("Ошибка. Не удается открыть plink.exe");
+                MessageBox.Show("Ошибка. Не удается открыть plink.exe", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
                 return;
             } catch (Exception ex) {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
                 return;
             }
@@ -149,7 +149,18 @@ namespace Flame_Manager {
                 // Обновляем в списке изменившуюся информацию
                 PlayerView.Items[index] = this.writePlayer(players[index]);
             } else {
-                MessageBox.Show("Вы не выбрали игрока.");
+                MessageBox.Show("Вы не выбрали игрока.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void удалитьToolStripMenuItem_Click(object sender, EventArgs e) {
+            if (PlayerView.SelectedItems.Count > 0) {
+                int index = PlayerView.SelectedItems[0].Index;
+                MessageBox.Show("Вы действительно хотите удалить игрока " + players[index].Name, "Удалить", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                // Обновляем в списке изменившуюся информацию
+                PlayerView.Items[index] = this.writePlayer(players[index]);
+            } else {
+                MessageBox.Show("Вы не выбрали игрока.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

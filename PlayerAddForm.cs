@@ -51,7 +51,7 @@ namespace Flame_Manager {
                     lastId = (int)cmd.LastInsertedId;
                 }
             } catch (MySqlException ex) {
-                MessageBox.Show("Ошибка базы данных: \n" + ex.Message, "MySQLError");
+                MessageBox.Show("Ошибка базы данных: \n" + ex.Message, "MySQLError", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 insertCon.Close();
                 return 0;
             }
@@ -84,7 +84,7 @@ namespace Flame_Manager {
             try {
                 this.player.isValid();
             } catch(Exception ex) {
-                MessageBox.Show(ex.Message, "Ошибка");
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             this.player.Id = this.insertPlayer();
@@ -92,7 +92,7 @@ namespace Flame_Manager {
                 this.insertPosts();
                 this.Close();
             } else {
-                MessageBox.Show("По неизвестной причине игрок не был добавлен.", "Ошибка");
+                MessageBox.Show("По неизвестной причине игрок не был добавлен.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
