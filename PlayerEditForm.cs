@@ -79,7 +79,11 @@ namespace Flame_Manager {
                 this.player.Posts = uplayer.Posts;
                 this.player.Name = uplayer.Name;
                 this.player.Skype = uplayer.Skype;
-                this.updatePosts();
+                try {
+                    this.updatePosts();
+                } catch(MySqlException ex) {
+                    MessageBox.Show("Ошибка базы данных: \n" + ex.Message, "MySQLError", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

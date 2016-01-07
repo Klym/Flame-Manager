@@ -35,9 +35,14 @@ namespace Flame_Manager {
                 this.Close();
                 return;
             }
-            this.selectRanks();
-            this.selectPosts();
-            this.selectPlayers();
+            try {
+                this.selectRanks();
+                this.selectPosts();
+                this.selectPlayers();
+            } catch(Exception ex) {
+                MessageBox.Show("Ошибка базы данных:\n" + ex.Message, "MySQLError", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
             this.showPlayerList();
             playersCountLabel.Text = players.Count().ToString();
         }

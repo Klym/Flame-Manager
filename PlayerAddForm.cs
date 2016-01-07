@@ -67,7 +67,13 @@ namespace Flame_Manager {
                 id = (this.player.Posts[i] != null) ? this.player.Posts[i].Id : 0;
                 string query = "INSERT INTO playerPosts SET player = '" + this.player.Id + "', did = '" + id + "'";
                 cmd = new MySqlCommand(query, insertCon);
-                cmd.ExecuteNonQuery();
+                try {
+                    cmd.ExecuteNonQuery();
+                } catch (MySqlException ex) {
+                    insertCon.Close();
+                    MessageBox.Show("Ошибка базы данных: \n" + ex.Message, "MySQLError", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                }
             }
             insertCon.Close();
         }
