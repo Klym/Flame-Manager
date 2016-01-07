@@ -212,5 +212,13 @@ namespace Flame_Manager {
             }
             delPostsCon.Close();
         }
+
+        private void обновитьToolStripMenuItem_Click(object sender, EventArgs e) {
+            PlayerView.Items.Clear();
+            this.players.Clear();
+            this.selectPlayers();
+            this.showPlayerList();
+            playersCountLabel.Text = this.players.Count.ToString();
+        }
     }
 }
