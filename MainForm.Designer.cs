@@ -36,13 +36,13 @@
             this.RankHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.NameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.playerEditMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.редактироватьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.удалитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.playersCountLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Options.SuspendLayout();
             this.playersBox.SuspendLayout();
             this.playerEditMenu.SuspendLayout();
@@ -158,7 +158,14 @@
             this.редактироватьToolStripMenuItem,
             this.удалитьToolStripMenuItem});
             this.playerEditMenu.Name = "playerEditMenu";
-            this.playerEditMenu.Size = new System.Drawing.Size(155, 92);
+            this.playerEditMenu.Size = new System.Drawing.Size(155, 70);
+            // 
+            // обновитьToolStripMenuItem
+            // 
+            this.обновитьToolStripMenuItem.Name = "обновитьToolStripMenuItem";
+            this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.обновитьToolStripMenuItem.Text = "Обновить";
+            this.обновитьToolStripMenuItem.Click += new System.EventHandler(this.обновитьToolStripMenuItem_Click);
             // 
             // редактироватьToolStripMenuItem
             // 
@@ -206,13 +213,6 @@
             this.playersCountLabel.Name = "playersCountLabel";
             this.playersCountLabel.Size = new System.Drawing.Size(13, 17);
             this.playersCountLabel.Text = "0";
-            // 
-            // обновитьToolStripMenuItem
-            // 
-            this.обновитьToolStripMenuItem.Name = "обновитьToolStripMenuItem";
-            this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-            this.обновитьToolStripMenuItem.Text = "Обновить";
-            this.обновитьToolStripMenuItem.Click += new System.EventHandler(this.обновитьToolStripMenuItem_Click);
             // 
             // MainForm
             // 

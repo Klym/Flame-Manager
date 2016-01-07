@@ -12,6 +12,7 @@ using MySql.Data.MySqlClient;
 
 
 namespace Flame_Manager {
+
     public partial class MainForm : Form {
         private Db db;
         private List<Player> players;
@@ -133,7 +134,11 @@ namespace Flame_Manager {
             addForm.ShowDialog();
             if (newPlayer.Id == 0) return;
             this.players.Add(newPlayer);
-            PlayerView.Items.Add(this.writePlayer(newPlayer));
+            // Сортируем список
+            PlayerComparer comparer = new PlayerComparer();
+            this.players.Sort(comparer);
+            PlayerView.Items.Clear();
+            this.showPlayerList();
             playersCountLabel.Text = this.players.Count.ToString();
         }
 
@@ -146,8 +151,11 @@ namespace Flame_Manager {
                 int index = PlayerView.SelectedItems[0].Index;
                 Form editForm = new PlayerEditForm(db, players[index]);
                 editForm.ShowDialog();
-                // Обновляем в списке изменившуюся информацию
-                PlayerView.Items[index] = this.writePlayer(players[index]);
+                // Сортируем список
+                PlayerComparer comparer = new PlayerComparer();
+                this.players.Sort(comparer);
+                PlayerView.Items.Clear();
+                this.showPlayerList();
             } else {
                 MessageBox.Show("Вы не выбрали игрока.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
