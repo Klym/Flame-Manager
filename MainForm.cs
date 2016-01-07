@@ -158,7 +158,13 @@ namespace Flame_Manager {
                 int index = PlayerView.SelectedItems[0].Index;
                 DialogResult res = MessageBox.Show("Вы действительно хотите удалить игрока " + players[index].Login, "Удалить", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (res == DialogResult.No) return;
-                this.deletePlayer(this.players[index]);
+                try {
+                    this.deletePlayer(this.players[index]);
+                } catch(Exception ex) {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                this.deletePosts(this.players[index].Id);
                 // Удаляем игрока из списка и обновляем количество
                 this.players.RemoveAt(index);
                 PlayerView.Items.RemoveAt(index);
@@ -169,7 +175,42 @@ namespace Flame_Manager {
         }
 
         private void deletePlayer(Player p) {
-            MessageBox.Show(p.Id.ToString());
+            MySqlConnection delCon = new MySqlConnection(db.ConnectionStr);
+            delCon.Open();
+            string query = "DELETE FROM sostav WHERE id = '" + p.Id + "'";
+            MySqlCommand delCmd = new MySqlCommand(query, delCon);
+            int delCount = 0;
+            try {
+                delCount = delCmd.ExecuteNonQuery();
+            } catch (MySqlException ex) {
+                delCon.Close();
+                throw new Exception("Ошибка базы данных:\n" + ex.Message);
+            }
+            delCon.Close();
+            if (delCount > 0) {
+                MessageBox.Show("Игрок " + p.Login + " успешно удален.", "Игрок удален", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            } else {
+                throw new Exception("Ошибка. Игрок не найден.");
+            }
+        }
+
+        private void deletePosts(int id) {
+            MySqlConnection delPostsCon = new MySqlConnection(db.ConnectionStr);
+            delPostsCon.Open();
+            string query = "DELETE FROM playerPosts WHERE player = '" + id + "'";
+            MySqlCommand delCmd = new MySqlCommand(query, delPostsCon);
+            int postCount = 0;
+            try {
+                postCount = delCmd.ExecuteNonQuery();
+            } catch (MySqlException ex) {
+                delPostsCon.Close();
+                MessageBox.Show("Ошибка базы данных:\n" + ex.Message, "MySQLError", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (postCount != 3) {
+                MessageBox.Show("Ошибка. Должности не удалены.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            delPostsCon.Close();
         }
     }
 }
