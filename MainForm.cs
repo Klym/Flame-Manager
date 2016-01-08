@@ -226,7 +226,7 @@ namespace Flame_Manager {
             delPostsCon.Close();
         }
 
-        private void обновитьToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void refreshButton_Click(object sender, EventArgs e) {
             PlayerView.Items.Clear();
             this.players.Clear();
             this.selectPlayers();

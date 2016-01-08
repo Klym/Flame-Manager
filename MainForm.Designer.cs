@@ -27,7 +27,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.Options = new System.Windows.Forms.GroupBox();
             this.viewButton = new System.Windows.Forms.Button();
-            this.saveButton = new System.Windows.Forms.Button();
+            this.refreshButton = new System.Windows.Forms.Button();
             this.addButton = new System.Windows.Forms.Button();
             this.playersBox = new System.Windows.Forms.GroupBox();
             this.PlayerView = new System.Windows.Forms.ListView();
@@ -36,7 +36,6 @@
             this.RankHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.NameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.playerEditMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.редактироватьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.удалитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -57,7 +56,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Options.AutoSize = true;
             this.Options.Controls.Add(this.viewButton);
-            this.Options.Controls.Add(this.saveButton);
+            this.Options.Controls.Add(this.refreshButton);
             this.Options.Controls.Add(this.addButton);
             this.Options.Location = new System.Drawing.Point(12, 407);
             this.Options.Name = "Options";
@@ -77,15 +76,16 @@
             this.viewButton.UseVisualStyleBackColor = true;
             this.viewButton.Click += new System.EventHandler(this.viewButton_Click);
             // 
-            // saveButton
+            // refreshButton
             // 
-            this.saveButton.AutoSize = true;
-            this.saveButton.Location = new System.Drawing.Point(168, 36);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(140, 55);
-            this.saveButton.TabIndex = 1;
-            this.saveButton.Text = "Сохранить в файл";
-            this.saveButton.UseVisualStyleBackColor = true;
+            this.refreshButton.AutoSize = true;
+            this.refreshButton.Location = new System.Drawing.Point(168, 36);
+            this.refreshButton.Name = "refreshButton";
+            this.refreshButton.Size = new System.Drawing.Size(140, 55);
+            this.refreshButton.TabIndex = 1;
+            this.refreshButton.Text = "Обновить";
+            this.refreshButton.UseVisualStyleBackColor = true;
+            this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
             // 
             // addButton
             // 
@@ -154,18 +154,10 @@
             // playerEditMenu
             // 
             this.playerEditMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.обновитьToolStripMenuItem,
             this.редактироватьToolStripMenuItem,
             this.удалитьToolStripMenuItem});
             this.playerEditMenu.Name = "playerEditMenu";
-            this.playerEditMenu.Size = new System.Drawing.Size(155, 70);
-            // 
-            // обновитьToolStripMenuItem
-            // 
-            this.обновитьToolStripMenuItem.Name = "обновитьToolStripMenuItem";
-            this.обновитьToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-            this.обновитьToolStripMenuItem.Text = "Обновить";
-            this.обновитьToolStripMenuItem.Click += new System.EventHandler(this.обновитьToolStripMenuItem_Click);
+            this.playerEditMenu.Size = new System.Drawing.Size(155, 48);
             // 
             // редактироватьToolStripMenuItem
             // 
@@ -247,7 +239,7 @@
         private System.Windows.Forms.ToolStripMenuItem удалитьToolStripMenuItem;
         private System.Windows.Forms.GroupBox Options;
         private System.Windows.Forms.Button viewButton;
-        private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.Button refreshButton;
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.GroupBox playersBox;
         private System.Windows.Forms.ListView PlayerView;
@@ -259,7 +251,6 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel playersCountLabel;
-        private System.Windows.Forms.ToolStripMenuItem обновитьToolStripMenuItem;
     }
 }
 
