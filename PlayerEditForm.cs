@@ -90,7 +90,7 @@ namespace Flame_Manager {
         private bool updatePlayer(Player uplayer) {
             MySqlConnection updateConnection = new MySqlConnection(db.ConnectionStr);
             updateConnection.Open();
-            string vals = "name = '" + uplayer.Login + "', scores = '" + uplayer.Scores + "', rang = '" + uplayer.Rank.Id + "', dol = '" + uplayer.countPostBits() + "', fullName = '" + uplayer.Name + "', skype = '" + uplayer.Skype + "'";
+            string vals = "name = '" + uplayer.Login + "', scores = '" + uplayer.Scores.ToString(System.Globalization.CultureInfo.InvariantCulture) + "', rang = '" + uplayer.Rank.Id + "', dol = '" + uplayer.countPostBits() + "', fullName = '" + uplayer.Name + "', skype = '" + uplayer.Skype + "'";
             string query = "UPDATE sostav SET " + vals + " WHERE id = '" + uplayer.Id + "'";
             MySqlCommand cmd = new MySqlCommand(query, updateConnection);
             int rowCount = 0;
@@ -177,7 +177,7 @@ namespace Flame_Manager {
 
         private void scores_TextChanged(object sender, EventArgs e) {
             if (String.Empty == scores.Text) return;
-            if (int.Parse(scores.Text) > 500000) {
+            if (double.Parse(scores.Text) > 500000) {
                 scores.Text = "480000";
             }
             for (int i = 0; i < MainForm.ranks.Count - 1; i++) {
