@@ -85,7 +85,7 @@ namespace Flame_Manager {
             MySqlDataReader rankReader = getRank.ExecuteReader();
             Rank rank;
             while (rankReader.Read()) {
-                rank = new Rank(int.Parse(rankReader["rid"].ToString()), rankReader["rangName"].ToString(), double.Parse(rankReader["minScores"].ToString()), double.Parse(rankReader["maxScores"].ToString()));
+                rank = new Rank(int.Parse(rankReader["id"].ToString()), rankReader["rangName"].ToString(), double.Parse(rankReader["minScores"].ToString()), double.Parse(rankReader["maxScores"].ToString()));
                 ranks.Add(rank);
             }
             rankCon.Close();
